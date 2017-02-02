@@ -4,7 +4,7 @@
  * Created: 02/02/2017 11:30:59
  *  Author: maxde
  */ 
-
+#define F_CPU 8000000
 #include <avr/io.h>
 #include <util/delay.h>
 #include "Week1/Headers/week1.h"

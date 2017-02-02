@@ -28,7 +28,6 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-#define F_CPU 8000000
 #include <asf.h>
 #include "main.h"
 #include <avr/io.h>
@@ -46,7 +45,13 @@ int main (void)
 	
 	while (1)
 	{
-		BlinkLedsSeperately(500);
+		if (PINC & 1)
+		{
+			BlinkLedsSeperately(500);
+		}
+		else{
+			PORTD = 0;
+		}
 	}
 
 	/* Insert application code here, after the board has been initialized. */

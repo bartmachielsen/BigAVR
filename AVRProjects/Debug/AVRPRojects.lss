@@ -3,31 +3,31 @@ AVRPRojects.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000146  2**0
+  0 .data         00000000  00800100  00800100  0000014e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000f2  00000000  00000000  00000054  2**1
+  1 .text         000000fa  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000146  2**0
+  2 .comment      00000030  00000000  00000000  0000014e  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000178  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000180  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000068  00000000  00000000  000001b4  2**0
+  4 .debug_aranges 00000068  00000000  00000000  000001bc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000a4e  00000000  00000000  0000021c  2**0
+  5 .debug_info   00000a4e  00000000  00000000  00000224  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000927  00000000  00000000  00000c6a  2**0
+  6 .debug_abbrev 00000927  00000000  00000000  00000c72  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000bf6  00000000  00000000  00001591  2**0
+  7 .debug_line   00000bf4  00000000  00000000  00001599  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000088  00000000  00000000  00002188  2**2
+  8 .debug_frame  00000088  00000000  00000000  00002190  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0001130a  00000000  00000000  00002210  2**0
+  9 .debug_str    0001130a  00000000  00000000  00002218  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000000cf  00000000  00000000  0001351a  2**0
+ 10 .debug_loc    000000cf  00000000  00000000  00013522  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000038  00000000  00000000  000135e9  2**0
+ 11 .debug_ranges 00000038  00000000  00000000  000135f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  00003bf3  00000000  00000000  00013621  2**0
+ 12 .debug_macro  00003bed  00000000  00000000  00013629  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -112,7 +112,7 @@ Disassembly of section .text:
   94:	de bf       	out	0x3e, r29	; 62
   96:	cd bf       	out	0x3d, r28	; 61
   98:	22 d0       	rcall	.+68     	; 0xde <main>
-  9a:	29 c0       	rjmp	.+82     	; 0xee <_exit>
+  9a:	2d c0       	rjmp	.+90     	; 0xf6 <_exit>
 
 0000009c <__bad_interrupt>:
   9c:	b1 cf       	rjmp	.-158    	; 0x0 <__vectors>
@@ -149,7 +149,7 @@ void wait(int ms)
   be:	08 95       	ret
 
 000000c0 <BlinkLedsSeperately>:
-
+#define F_CPU 8000000
 #include <avr/io.h>
 #include <util/delay.h>
 #include "Week1/Headers/week1.h"
@@ -201,15 +201,23 @@ int main (void)
 	
 	while (1)
 	{
-		BlinkLedsSeperately(500);
-  e6:	84 ef       	ldi	r24, 0xF4	; 244
-  e8:	91 e0       	ldi	r25, 0x01	; 1
-  ea:	ea df       	rcall	.-44     	; 0xc0 <BlinkLedsSeperately>
-	}
-  ec:	fc cf       	rjmp	.-8      	; 0xe6 <main+0x8>
+		if (PINC & 1)
+  e6:	98 9b       	sbis	0x13, 0	; 19
+  e8:	04 c0       	rjmp	.+8      	; 0xf2 <main+0x14>
+		{
+			BlinkLedsSeperately(500);
+  ea:	84 ef       	ldi	r24, 0xF4	; 244
+  ec:	91 e0       	ldi	r25, 0x01	; 1
+  ee:	e8 df       	rcall	.-48     	; 0xc0 <BlinkLedsSeperately>
+  f0:	fa cf       	rjmp	.-12     	; 0xe6 <main+0x8>
+		}
+		else{
+			PORTD = 0;
+  f2:	12 ba       	out	0x12, r1	; 18
+  f4:	f8 cf       	rjmp	.-16     	; 0xe6 <main+0x8>
 
-000000ee <_exit>:
-  ee:	f8 94       	cli
+000000f6 <_exit>:
+  f6:	f8 94       	cli
 
-000000f0 <__stop_program>:
-  f0:	ff cf       	rjmp	.-2      	; 0xf0 <__stop_program>
+000000f8 <__stop_program>:
+  f8:	ff cf       	rjmp	.-2      	; 0xf8 <__stop_program>
