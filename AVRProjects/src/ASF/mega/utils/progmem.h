@@ -1,10 +1,9 @@
-/**************************************************************************
- *
+/**
  * \file
  *
- * \brief UC3 trampoline definitions (default size is 8KB)
+ * \brief Program memory access
  *
- * Copyright (c) 2014-2015 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2010-2015 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -40,16 +39,64 @@
  *
  * \asf_license_stop
  *
- ***************************************************************************/
+ */
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 
+#ifndef UTILS_PROGMEM_H
+#define UTILS_PROGMEM_H
 
-#ifndef _TRAMPOLINE_UC3_H_
-#define _TRAMPOLINE_UC3_H_
+/**
+ * \defgroup group_mega_utils_progmem Program memory
+ *
+ * \ingroup group_mega_utils
+ *
+ * \{
+ */
 
-#define PROGRAM_START_ADDRESS         (AVR32_FLASH_ADDRESS + PROGRAM_START_OFFSET)
-#define PROGRAM_START_OFFSET          0x00002000
+/*! \name Program memory
+ *
+ * Macros for locating and accessing data in program memory.
+ *
+ * @{
+ */
+#if defined(__GNUC__) || defined(__DOXYGEN__)
+# include <avr/pgmspace.h>
+# define PROGMEM_LOCATION(type, name, loc) \
+		type name __attribute__((section (#loc)))
+# define PROGMEM_DECLARE(type, name) const type name __attribute__((__progmem__))
+# define PROGMEM_STRING(x) PSTR(x)
+# define PROGMEM_STRING_T  PGM_P
+# define PROGMEM_T const
+# define PROGMEM_PTR_T const *
+# define PROGMEM_BYTE_ARRAY_T uint8_t*
+# define PROGMEM_WORD_ARRAY_T uint16_t*
+# define PROGMEM_READ_BYTE(x) pgm_read_byte(x)
+# define PROGMEM_READ_WORD(x) pgm_read_word(x)
 
-#endif // _TRAMPOLINE_UC3_H_
+#elif defined(__ICCAVR__)
+# include <pgmspace.h>
+# ifndef __HAS_ELPM__
+#  define _MEMATTR_ASF  __flash
+# else /* __HAS_ELPM__ */
+#  define _MEMATTR_ASF  __hugeflash
+# endif /* __HAS_ELPM__ */
+# define PROGMEM_LOCATION(type, name, loc) const _MEMATTR_ASF type name @ loc
+# define PROGMEM_DECLARE(type, name) _MEMATTR_ASF type name
+# define PROGMEM_STRING(x) ((_MEMATTR_ASF const char *)(x))
+# define PROGMEM_STRING_T  char const _MEMATTR_ASF *
+# define PROGMEM_T const _MEMATTR_ASF
+# define PROGMEM_PTR_T const _MEMATTR_ASF *
+# define PROGMEM_BYTE_ARRAY_T uint8_t const _MEMATTR_ASF *
+# define PROGMEM_WORD_ARRAY_T uint16_t const _MEMATTR_ASF *
+# define PROGMEM_READ_BYTE(x) *(x)
+# define PROGMEM_READ_WORD(x) *(x)
+#endif
+//! @}
+
+/**
+ * \}
+ */
+
+#endif /* UTILS_PROGMEM_H */

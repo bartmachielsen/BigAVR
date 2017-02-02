@@ -49,14 +49,6 @@
 #ifndef STATUS_CODES_H_INCLUDED
 #define STATUS_CODES_H_INCLUDED
 
-/**
- * \defgroup group_avr32_utils_status_codes Status Codes
- *
- * \ingroup group_avr32_utils
- *
- * \{
- */
-
 /* Note: this is a local workaround to avoid a pre-processor clash due to the
  * lwIP macro ERR_TIMEOUT. */
 #if defined(__LWIP_ERR_H__) && defined(ERR_TIMEOUT)
@@ -113,9 +105,5 @@ typedef enum status_code status_code_t;
 #if defined(__LWIP_ERR_H__)
 #define ERR_TIMEOUT -3
 #endif
-
-/**
- * \}
- */
 
 #endif /* STATUS_CODES_H_INCLUDED */

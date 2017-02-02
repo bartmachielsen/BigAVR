@@ -1,5 +1,4 @@
-/*****************************************************************************
- *
+/**
  * \file
  *
  * \brief Preprocessor stringizing utils.
@@ -40,19 +39,17 @@
  *
  * \asf_license_stop
  *
- ******************************************************************************/
+ */
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-
-
 #ifndef _STRINGZ_H_
 #define _STRINGZ_H_
 
 /**
- * \defgroup group_avr32_utils_stringz Preprocessor - Stringize
+ * \defgroup group_mega_utils_stringz Stringize
  *
- * \ingroup group_avr32_utils
+ * \ingroup group_mega_utils
  *
  * \{
  */

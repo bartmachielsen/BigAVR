@@ -5,16 +5,16 @@
     <ProjectVersion>7.0</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
     <ProjectGuid>dce6c7e3-ee26-4d79-826b-08594b9ad897</ProjectGuid>
-    <avrdevice>AT32UC3A0512</avrdevice>
-    <avrdeviceseries>uc3a</avrdeviceseries>
+    <avrdevice>ATmega128</avrdevice>
+    <avrdeviceseries>mega</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>C</Language>
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>AVRProjects</AssemblyName>
-    <Name>AVRProjects</Name>
-    <RootNamespace>AVRProjects</RootNamespace>
+    <AssemblyName>AVRPRojects</AssemblyName>
+    <Name>AVRPRojects</Name>
+    <RootNamespace>AVRPRojects</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -29,106 +29,88 @@
     <AsfFrameworkConfig>
       <framework-data>
   <options>
-    <option id="avr32.drivers.gpio" value="Add" config="" content-id="Atmel.ASF" />
-    <option id="common.applications.user_application" value="Add" config="" content-id="Atmel.ASF" />
     <option id="common.boards" value="Add" config="" content-id="Atmel.ASF" />
   </options>
   <configurations />
   <files>
-    <file path="src/ASF/avr32/boards/evk1100/evk1100.h" framework="" version="" source="avr32/boards/evk1100/evk1100.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/boards/evk1100/init.c" framework="" version="" source="avr32/boards/evk1100/init.c" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/boards/evk1100/led.c" framework="" version="" source="avr32/boards/evk1100/led.c" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/boards/evk1100/led.h" framework="" version="" source="avr32/boards/evk1100/led.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/drivers/gpio/gpio.c" framework="" version="" source="avr32/drivers/gpio/gpio.c" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/drivers/gpio/gpio.h" framework="" version="" source="avr32/drivers/gpio/gpio.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/drivers/intc/exception.S" framework="" version="" source="avr32/drivers/intc/exception.S" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/drivers/intc/intc.c" framework="" version="" source="avr32/drivers/intc/intc.c" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/drivers/intc/intc.h" framework="" version="" source="avr32/drivers/intc/intc.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/compiler.h" framework="" version="" source="avr32/utils/compiler.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/header_files/uc3d_defines_fix.h" framework="" version="" source="avr32/utils/header_files/uc3d_defines_fix.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/header_files/uc3l3_l4_defines_fix.h" framework="" version="" source="avr32/utils/header_files/uc3l3_l4_defines_fix.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/linker_scripts/at32uc3a/0512/gcc/link_uc3a0512.lds" framework="" version="" source="avr32/utils/linker_scripts/at32uc3a/0512/gcc/link_uc3a0512.lds" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/make/Makefile.avr32.in" framework="" version="" source="avr32/utils/make/Makefile.avr32.in" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/make/Makefile.avr32program.in" framework="" version="" source="avr32/utils/make/Makefile.avr32program.in" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/make/Makefile.batchisp.in" framework="" version="" source="avr32/utils/make/Makefile.batchisp.in" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/preprocessor/mrepeat.h" framework="" version="" source="avr32/utils/preprocessor/mrepeat.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/preprocessor/preprocessor.h" framework="" version="" source="avr32/utils/preprocessor/preprocessor.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/preprocessor/stringz.h" framework="" version="" source="avr32/utils/preprocessor/stringz.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/preprocessor/tpaste.h" framework="" version="" source="avr32/utils/preprocessor/tpaste.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/startup/startup_uc3.S" framework="" version="" source="avr32/utils/startup/startup_uc3.S" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/startup/trampoline_uc3.S" framework="" version="" source="avr32/utils/startup/trampoline_uc3.S" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/startup/trampoline_uc3.h" framework="" version="" source="avr32/utils/startup/trampoline_uc3.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/avr32/utils/status_codes.h" framework="" version="" source="avr32/utils/status_codes.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/config/conf_board.h" framework="" version="" source="common/applications/user_application/at32uc3a0512_evk1100/config/conf_board.h" changed="False" content-id="Atmel.ASF" />
     <file path="src/main.c" framework="" version="" source="common/applications/user_application/main.c" changed="False" content-id="Atmel.ASF" />
+    <file path="src/config/conf_board.h" framework="" version="" source="common/applications/user_application/user_board/config/conf_board.h" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/boards/board.h" framework="" version="" source="common/boards/board.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/common/boards/user_board/init.c" framework="" version="" source="common/boards/user_board/init.c" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/common/boards/user_board/user_board.h" framework="" version="" source="common/boards/user_board/user_board.h" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/utils/interrupt.h" framework="" version="" source="common/utils/interrupt.h" changed="False" content-id="Atmel.ASF" />
-    <file path="src/ASF/common/utils/interrupt/interrupt_avr32.h" framework="" version="" source="common/utils/interrupt/interrupt_avr32.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/common/utils/interrupt/interrupt_avr8.h" framework="" version="" source="common/utils/interrupt/interrupt_avr8.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/common/utils/make/Makefile.avr.in" framework="" version="" source="common/utils/make/Makefile.avr.in" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/utils/parts.h" framework="" version="" source="common/utils/parts.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/assembler.h" framework="" version="" source="mega/utils/assembler.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/assembler/gas.h" framework="" version="" source="mega/utils/assembler/gas.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/compiler.h" framework="" version="" source="mega/utils/compiler.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/preprocessor/mrepeat.h" framework="" version="" source="mega/utils/preprocessor/mrepeat.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/preprocessor/preprocessor.h" framework="" version="" source="mega/utils/preprocessor/preprocessor.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/preprocessor/stringz.h" framework="" version="" source="mega/utils/preprocessor/stringz.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/preprocessor/tpaste.h" framework="" version="" source="mega/utils/preprocessor/tpaste.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/progmem.h" framework="" version="" source="mega/utils/progmem.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/mega/utils/status_codes.h" framework="" version="" source="mega/utils/status_codes.h" changed="False" content-id="Atmel.ASF" />
   </files>
-  <documentation help="http://asf.atmel.com/docs/3.32.0/common.applications.user_application.evk1100/html/index.html" />
+  <documentation help="http://asf.atmel.com/docs/3.32.0/common.applications.user_application.user_board.mega/html/index.html" />
   <offline-documentation help="" />
   <dependencies>
     <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.32.0" />
   </dependencies>
-  <project id="common.applications.user_application.evk1100" value="Add" config="" content-id="Atmel.ASF" />
-  <board id="board.evk1100" value="Add" config="" content-id="Atmel.ASF" />
+  <project id="common.applications.user_application.user_board.mega" value="Add" config="" content-id="Atmel.ASF" />
+  <board id="board.user_board.mega" value="Add" config="" content-id="Atmel.ASF" />
 </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGcc>
-  <avrgcc.common.Device>-mmcu=at32uc3a0512</avrgcc.common.Device>
+  <avrgcc.common.Device>-mmcu=atmega128 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\gcc\dev\atmega128"</avrgcc.common.Device>
   <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
   <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
   <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
   <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
   <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
   <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
-  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
-  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
   <avrgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>NDEBUG</Value>
-      <Value>BOARD=EVK1100</Value>
+      <Value>BOARD=USER_BOARD</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>%24(PackRepoDir)\atmel\UC3A_DFP\1.0.53\include\AT32UC3A0512</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\include</Value>
+      <Value>../src/ASF/common/boards/user_board</Value>
       <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/avr32/utils/preprocessor</Value>
-      <Value>../src/ASF/avr32/utils</Value>
+      <Value>../src/ASF/mega/utils/preprocessor</Value>
+      <Value>../src/ASF/mega/utils</Value>
       <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/avr32/drivers/intc</Value>
-      <Value>../src/ASF/avr32/boards/evk1100</Value>
-      <Value>../src/ASF/avr32/boards</Value>
-      <Value>../src/ASF/avr32/drivers/gpio</Value>
       <Value>../src</Value>
       <Value>../src/config</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.OtherFlags>-fdata-sections</avrgcc.compiler.optimization.OtherFlags>
   <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
   <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
   <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
+  <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-mrelax -DBOARD=USER_BOARD</avrgcc.assembler.general.AssemblerFlags>
   <avrgcc.assembler.general.IncludePaths>
     <ListValues>
-      <Value>%24(PackRepoDir)\atmel\UC3A_DFP\1.0.53\include\AT32UC3A0512</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\include</Value>
+      <Value>../src/ASF/common/boards/user_board</Value>
       <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/avr32/utils/preprocessor</Value>
-      <Value>../src/ASF/avr32/utils</Value>
+      <Value>../src/ASF/mega/utils/preprocessor</Value>
+      <Value>../src/ASF/mega/utils</Value>
       <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/avr32/drivers/intc</Value>
-      <Value>../src/ASF/avr32/boards/evk1100</Value>
-      <Value>../src/ASF/avr32/boards</Value>
-      <Value>../src/ASF/avr32/drivers/gpio</Value>
       <Value>../src</Value>
       <Value>../src/config</Value>
     </ListValues>
@@ -139,57 +121,53 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGcc>
-  <avrgcc.common.Device>-mmcu=at32uc3a0512</avrgcc.common.Device>
+  <avrgcc.common.Device>-mmcu=atmega128 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\gcc\dev\atmega128"</avrgcc.common.Device>
   <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
   <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
   <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
   <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
   <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
   <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
-  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
-  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
   <avrgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>DEBUG</Value>
-      <Value>BOARD=EVK1100</Value>
+      <Value>BOARD=USER_BOARD</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>%24(PackRepoDir)\atmel\UC3A_DFP\1.0.53\include\AT32UC3A0512</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\include</Value>
+      <Value>../src/ASF/common/boards/user_board</Value>
       <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/avr32/utils/preprocessor</Value>
-      <Value>../src/ASF/avr32/utils</Value>
+      <Value>../src/ASF/mega/utils/preprocessor</Value>
+      <Value>../src/ASF/mega/utils</Value>
       <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/avr32/drivers/intc</Value>
-      <Value>../src/ASF/avr32/boards/evk1100</Value>
-      <Value>../src/ASF/avr32/boards</Value>
-      <Value>../src/ASF/avr32/drivers/gpio</Value>
       <Value>../src</Value>
       <Value>../src/config</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.OtherFlags>-fdata-sections</avrgcc.compiler.optimization.OtherFlags>
   <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
   <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
-  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.optimization.DebugLevel>Maximum (-g3)</avrgcc.compiler.optimization.DebugLevel>
   <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
+  <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-mrelax -DBOARD=USER_BOARD</avrgcc.assembler.general.AssemblerFlags>
   <avrgcc.assembler.general.IncludePaths>
     <ListValues>
-      <Value>%24(PackRepoDir)\atmel\UC3A_DFP\1.0.53\include\AT32UC3A0512</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\include</Value>
+      <Value>../src/ASF/common/boards/user_board</Value>
       <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/avr32/utils/preprocessor</Value>
-      <Value>../src/ASF/avr32/utils</Value>
+      <Value>../src/ASF/mega/utils/preprocessor</Value>
+      <Value>../src/ASF/mega/utils</Value>
       <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/avr32/drivers/intc</Value>
-      <Value>../src/ASF/avr32/boards/evk1100</Value>
-      <Value>../src/ASF/avr32/boards</Value>
-      <Value>../src/ASF/avr32/drivers/gpio</Value>
       <Value>../src</Value>
       <Value>../src/config</Value>
     </ListValues>
@@ -201,118 +179,73 @@
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\ASF\" />
-    <Folder Include="src\ASF\avr32\" />
-    <Folder Include="src\ASF\avr32\boards\" />
-    <Folder Include="src\ASF\avr32\boards\evk1100\" />
-    <Folder Include="src\ASF\avr32\drivers\" />
-    <Folder Include="src\ASF\avr32\drivers\gpio\" />
-    <Folder Include="src\ASF\avr32\drivers\intc\" />
-    <Folder Include="src\ASF\avr32\utils\" />
-    <Folder Include="src\ASF\avr32\utils\header_files\" />
-    <Folder Include="src\ASF\avr32\utils\linker_scripts\" />
-    <Folder Include="src\ASF\avr32\utils\linker_scripts\at32uc3a\" />
-    <Folder Include="src\ASF\avr32\utils\linker_scripts\at32uc3a\0512\" />
-    <Folder Include="src\ASF\avr32\utils\linker_scripts\at32uc3a\0512\gcc\" />
-    <Folder Include="src\ASF\avr32\utils\make\" />
-    <Folder Include="src\ASF\avr32\utils\preprocessor\" />
-    <Folder Include="src\ASF\avr32\utils\startup\" />
     <Folder Include="src\ASF\common\" />
     <Folder Include="src\ASF\common\boards\" />
+    <Folder Include="src\ASF\common\boards\user_board\" />
     <Folder Include="src\ASF\common\utils\" />
     <Folder Include="src\ASF\common\utils\interrupt\" />
+    <Folder Include="src\ASF\common\utils\make\" />
+    <Folder Include="src\ASF\mega\" />
+    <Folder Include="src\ASF\mega\utils\" />
+    <Folder Include="src\ASF\mega\utils\assembler\" />
+    <Folder Include="src\ASF\mega\utils\preprocessor\" />
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\config\conf_board.h">
+    <None Include="src\ASF\common\utils\make\Makefile.avr.in">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\compiler.h">
+    <None Include="src\ASF\mega\utils\status_codes.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\linker_scripts\at32uc3a\0512\gcc\link_uc3a0512.lds">
+    <None Include="src\ASF\common\boards\user_board\user_board.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\make\Makefile.avr32.in">
+    <None Include="src\ASF\mega\utils\assembler\gas.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\make\Makefile.avr32program.in">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\avr32\utils\make\Makefile.batchisp.in">
+    <None Include="src\ASF\mega\utils\preprocessor\mrepeat.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\common\boards\board.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\ASF\common\boards\user_board\init.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\common\utils\interrupt\interrupt_avr8.h">
+      <SubType>compile</SubType>
+    </None>
     <None Include="src\ASF\common\utils\parts.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\boards\evk1100\evk1100.h">
+    <None Include="src\ASF\mega\utils\assembler.h">
       <SubType>compile</SubType>
     </None>
-    <Compile Include="src\ASF\avr32\boards\evk1100\init.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\avr32\boards\evk1100\led.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <None Include="src\ASF\avr32\utils\header_files\uc3d_defines_fix.h">
+    <None Include="src\ASF\mega\utils\compiler.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\common\utils\interrupt.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\drivers\intc\intc.h">
+    <None Include="src\ASF\mega\utils\preprocessor\stringz.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\drivers\gpio\gpio.h">
+    <None Include="src\ASF\mega\utils\preprocessor\preprocessor.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\preprocessor\tpaste.h">
+    <None Include="src\config\conf_board.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\common\utils\interrupt\interrupt_avr32.h">
+    <None Include="src\ASF\mega\utils\progmem.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\preprocessor\stringz.h">
+    <None Include="src\ASF\mega\utils\preprocessor\tpaste.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\avr32\utils\header_files\uc3l3_l4_defines_fix.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\avr32\utils\status_codes.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\avr32\utils\preprocessor\mrepeat.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\avr32\utils\preprocessor\preprocessor.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\avr32\boards\evk1100\led.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\avr32\drivers\gpio\gpio.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\avr32\drivers\intc\exception.S">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\avr32\drivers\intc\intc.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\avr32\utils\startup\startup_uc3.S">
-      <SubType>compile</SubType>
-    </Compile>
-    <None Include="src\ASF\avr32\utils\startup\trampoline_uc3.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\avr32\utils\startup\trampoline_uc3.S">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>

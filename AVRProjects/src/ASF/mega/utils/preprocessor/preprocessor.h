@@ -1,16 +1,9 @@
-/*****************************************************************************
- *
+/**
  * \file
  *
- * \brief AVR32 UC3 ISP trampoline.
+ * \brief Preprocessor utils.
  *
- * In order to be able to program a project with both BatchISP and JTAGICE mkII
- * without having to take the general-purpose fuses into consideration, add this
- * file to the project and change the program entry point to _trampoline.
- *
- * The pre-programmed ISP will be erased if JTAGICE mkII is used.
- *
- * Copyright (c) 2009 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2014-2015 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -46,31 +39,16 @@
  *
  * \asf_license_stop
  *
- ******************************************************************************/
+ */
+/*
+ * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
+ */
+#ifndef _PREPROCESSOR_H_
+#define _PREPROCESSOR_H_
+
+#include "tpaste.h"
+#include "stringz.h"
+#include "mrepeat.h"
 
 
-#include "trampoline_uc3.h"
-
-
-//! @{
-//! \verbatim
-
-
-  // This must be linked @ 0x80000000 if it is to be run upon reset.
-  .section  .reset, "ax", @progbits
-
-
-  .global _trampoline
-  .type _trampoline, @function
-_trampoline:
-  // Jump to program start.
-  rjmp    program_start
-
-  .org  PROGRAM_START_OFFSET
-program_start:
-  // Jump to the C runtime startup routine.
-  lda.w   pc, _stext
-
-
-//! \endverbatim
-//! @}
+#endif  // _PREPROCESSOR_H_

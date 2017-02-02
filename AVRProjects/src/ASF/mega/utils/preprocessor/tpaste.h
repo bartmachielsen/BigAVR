@@ -1,5 +1,4 @@
-/*****************************************************************************
- *
+/**
  * \file
  *
  * \brief Preprocessor token pasting utils.
@@ -40,19 +39,17 @@
  *
  * \asf_license_stop
  *
- ******************************************************************************/
+ */
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-
-
 #ifndef _TPASTE_H_
 #define _TPASTE_H_
 
 /**
- * \defgroup group_avr32_utils_tpaste Preprocessor - Token Paste
+ * \defgroup group_mega_utils_tpaste Token Paste
  *
- * \ingroup group_avr32_utils
+ * \ingroup group_mega_utils
  *
  * \{
  */

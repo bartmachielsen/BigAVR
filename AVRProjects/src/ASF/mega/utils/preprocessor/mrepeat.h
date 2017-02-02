@@ -1,5 +1,4 @@
-/*****************************************************************************
- *
+/**
  * \file
  *
  * \brief Preprocessor macro repeating utils.
@@ -40,19 +39,17 @@
  *
  * \asf_license_stop
  *
- ******************************************************************************/
+ */
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-
-
 #ifndef _MREPEAT_H_
 #define _MREPEAT_H_
 
 /**
- * \defgroup group_avr32_utils_mrepeat Preprocessor - Macro Repeat
+ * \defgroup group_mega_utils_mrepeat Macro Repeat
  *
- * \ingroup group_avr32_utils
+ * \ingroup group_mega_utils
  *
  * \{
  */

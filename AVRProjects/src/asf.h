@@ -52,21 +52,18 @@
  * running the ASF driver selector tool. Any changes will be discarded.
  */
 
-// From module: Compiler abstraction layer and code utilities
-#include <compiler.h>
-#include <status_codes.h>
-
-// From module: EVK1100
-#include <led.h>
-
-// From module: GPIO - General-Purpose Input/Output
-#include <gpio.h>
+// From module: Common build items for user board support templates
+#include <user_board.h>
 
 // From module: Generic board support
 #include <board.h>
 
-// From module: Interrupt management - UC3 implementation
+// From module: Interrupt management - megaAVR implementation
 #include <interrupt.h>
+
+// From module: MEGA compiler driver
+#include <compiler.h>
+#include <status_codes.h>
 
 // From module: Part identification macros
 #include <parts.h>
