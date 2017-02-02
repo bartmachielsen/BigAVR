@@ -3,31 +3,31 @@ AVRPRojects.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000014e  2**0
+  0 .data         00000060  00800100  000002be  00000332  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000fa  00000000  00000000  00000054  2**1
+  1 .text         000002be  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000014e  2**0
+  2 .comment      00000030  00000000  00000000  00000392  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000180  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003c4  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000068  00000000  00000000  000001bc  2**0
+  4 .debug_aranges 00000070  00000000  00000000  00000400  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000a4e  00000000  00000000  00000224  2**0
+  5 .debug_info   00000c19  00000000  00000000  00000470  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000927  00000000  00000000  00000c72  2**0
+  6 .debug_abbrev 0000095d  00000000  00000000  00001089  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000bf4  00000000  00000000  00001599  2**0
+  7 .debug_line   00000d82  00000000  00000000  000019e6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000088  00000000  00000000  00002190  2**2
+  8 .debug_frame  000000a8  00000000  00000000  00002768  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0001130a  00000000  00000000  00002218  2**0
+  9 .debug_str    00011337  00000000  00000000  00002810  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000000cf  00000000  00000000  00013522  2**0
+ 10 .debug_loc    0000023e  00000000  00000000  00013b47  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000038  00000000  00000000  000135f1  2**0
+ 11 .debug_ranges 00000088  00000000  00000000  00013d85  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  00003bed  00000000  00000000  00013629  2**0
+ 12 .debug_macro  00003bed  00000000  00000000  00013e0d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -35,73 +35,73 @@ Disassembly of section .text:
 00000000 <__vectors>:
    0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
    2:	00 00       	nop
-   4:	4b c0       	rjmp	.+150    	; 0x9c <__bad_interrupt>
+   4:	58 c0       	rjmp	.+176    	; 0xb6 <__bad_interrupt>
    6:	00 00       	nop
-   8:	49 c0       	rjmp	.+146    	; 0x9c <__bad_interrupt>
+   8:	56 c0       	rjmp	.+172    	; 0xb6 <__bad_interrupt>
    a:	00 00       	nop
-   c:	47 c0       	rjmp	.+142    	; 0x9c <__bad_interrupt>
+   c:	54 c0       	rjmp	.+168    	; 0xb6 <__bad_interrupt>
    e:	00 00       	nop
-  10:	45 c0       	rjmp	.+138    	; 0x9c <__bad_interrupt>
+  10:	52 c0       	rjmp	.+164    	; 0xb6 <__bad_interrupt>
   12:	00 00       	nop
-  14:	43 c0       	rjmp	.+134    	; 0x9c <__bad_interrupt>
+  14:	50 c0       	rjmp	.+160    	; 0xb6 <__bad_interrupt>
   16:	00 00       	nop
-  18:	41 c0       	rjmp	.+130    	; 0x9c <__bad_interrupt>
+  18:	4e c0       	rjmp	.+156    	; 0xb6 <__bad_interrupt>
   1a:	00 00       	nop
-  1c:	3f c0       	rjmp	.+126    	; 0x9c <__bad_interrupt>
+  1c:	4c c0       	rjmp	.+152    	; 0xb6 <__bad_interrupt>
   1e:	00 00       	nop
-  20:	3d c0       	rjmp	.+122    	; 0x9c <__bad_interrupt>
+  20:	4a c0       	rjmp	.+148    	; 0xb6 <__bad_interrupt>
   22:	00 00       	nop
-  24:	3b c0       	rjmp	.+118    	; 0x9c <__bad_interrupt>
+  24:	48 c0       	rjmp	.+144    	; 0xb6 <__bad_interrupt>
   26:	00 00       	nop
-  28:	39 c0       	rjmp	.+114    	; 0x9c <__bad_interrupt>
+  28:	46 c0       	rjmp	.+140    	; 0xb6 <__bad_interrupt>
   2a:	00 00       	nop
-  2c:	37 c0       	rjmp	.+110    	; 0x9c <__bad_interrupt>
+  2c:	44 c0       	rjmp	.+136    	; 0xb6 <__bad_interrupt>
   2e:	00 00       	nop
-  30:	35 c0       	rjmp	.+106    	; 0x9c <__bad_interrupt>
+  30:	42 c0       	rjmp	.+132    	; 0xb6 <__bad_interrupt>
   32:	00 00       	nop
-  34:	33 c0       	rjmp	.+102    	; 0x9c <__bad_interrupt>
+  34:	40 c0       	rjmp	.+128    	; 0xb6 <__bad_interrupt>
   36:	00 00       	nop
-  38:	31 c0       	rjmp	.+98     	; 0x9c <__bad_interrupt>
+  38:	3e c0       	rjmp	.+124    	; 0xb6 <__bad_interrupt>
   3a:	00 00       	nop
-  3c:	2f c0       	rjmp	.+94     	; 0x9c <__bad_interrupt>
+  3c:	3c c0       	rjmp	.+120    	; 0xb6 <__bad_interrupt>
   3e:	00 00       	nop
-  40:	2d c0       	rjmp	.+90     	; 0x9c <__bad_interrupt>
+  40:	3a c0       	rjmp	.+116    	; 0xb6 <__bad_interrupt>
   42:	00 00       	nop
-  44:	2b c0       	rjmp	.+86     	; 0x9c <__bad_interrupt>
+  44:	38 c0       	rjmp	.+112    	; 0xb6 <__bad_interrupt>
   46:	00 00       	nop
-  48:	29 c0       	rjmp	.+82     	; 0x9c <__bad_interrupt>
+  48:	36 c0       	rjmp	.+108    	; 0xb6 <__bad_interrupt>
   4a:	00 00       	nop
-  4c:	27 c0       	rjmp	.+78     	; 0x9c <__bad_interrupt>
+  4c:	34 c0       	rjmp	.+104    	; 0xb6 <__bad_interrupt>
   4e:	00 00       	nop
-  50:	25 c0       	rjmp	.+74     	; 0x9c <__bad_interrupt>
+  50:	32 c0       	rjmp	.+100    	; 0xb6 <__bad_interrupt>
   52:	00 00       	nop
-  54:	23 c0       	rjmp	.+70     	; 0x9c <__bad_interrupt>
+  54:	30 c0       	rjmp	.+96     	; 0xb6 <__bad_interrupt>
   56:	00 00       	nop
-  58:	21 c0       	rjmp	.+66     	; 0x9c <__bad_interrupt>
+  58:	2e c0       	rjmp	.+92     	; 0xb6 <__bad_interrupt>
   5a:	00 00       	nop
-  5c:	1f c0       	rjmp	.+62     	; 0x9c <__bad_interrupt>
+  5c:	2c c0       	rjmp	.+88     	; 0xb6 <__bad_interrupt>
   5e:	00 00       	nop
-  60:	1d c0       	rjmp	.+58     	; 0x9c <__bad_interrupt>
+  60:	2a c0       	rjmp	.+84     	; 0xb6 <__bad_interrupt>
   62:	00 00       	nop
-  64:	1b c0       	rjmp	.+54     	; 0x9c <__bad_interrupt>
+  64:	28 c0       	rjmp	.+80     	; 0xb6 <__bad_interrupt>
   66:	00 00       	nop
-  68:	19 c0       	rjmp	.+50     	; 0x9c <__bad_interrupt>
+  68:	26 c0       	rjmp	.+76     	; 0xb6 <__bad_interrupt>
   6a:	00 00       	nop
-  6c:	17 c0       	rjmp	.+46     	; 0x9c <__bad_interrupt>
+  6c:	24 c0       	rjmp	.+72     	; 0xb6 <__bad_interrupt>
   6e:	00 00       	nop
-  70:	15 c0       	rjmp	.+42     	; 0x9c <__bad_interrupt>
+  70:	22 c0       	rjmp	.+68     	; 0xb6 <__bad_interrupt>
   72:	00 00       	nop
-  74:	13 c0       	rjmp	.+38     	; 0x9c <__bad_interrupt>
+  74:	20 c0       	rjmp	.+64     	; 0xb6 <__bad_interrupt>
   76:	00 00       	nop
-  78:	11 c0       	rjmp	.+34     	; 0x9c <__bad_interrupt>
+  78:	1e c0       	rjmp	.+60     	; 0xb6 <__bad_interrupt>
   7a:	00 00       	nop
-  7c:	0f c0       	rjmp	.+30     	; 0x9c <__bad_interrupt>
+  7c:	1c c0       	rjmp	.+56     	; 0xb6 <__bad_interrupt>
   7e:	00 00       	nop
-  80:	0d c0       	rjmp	.+26     	; 0x9c <__bad_interrupt>
+  80:	1a c0       	rjmp	.+52     	; 0xb6 <__bad_interrupt>
   82:	00 00       	nop
-  84:	0b c0       	rjmp	.+22     	; 0x9c <__bad_interrupt>
+  84:	18 c0       	rjmp	.+48     	; 0xb6 <__bad_interrupt>
   86:	00 00       	nop
-  88:	09 c0       	rjmp	.+18     	; 0x9c <__bad_interrupt>
+  88:	16 c0       	rjmp	.+44     	; 0xb6 <__bad_interrupt>
 	...
 
 0000008c <__ctors_end>:
@@ -111,113 +111,493 @@ Disassembly of section .text:
   92:	d0 e1       	ldi	r29, 0x10	; 16
   94:	de bf       	out	0x3e, r29	; 62
   96:	cd bf       	out	0x3d, r28	; 61
-  98:	22 d0       	rcall	.+68     	; 0xde <main>
-  9a:	2d c0       	rjmp	.+90     	; 0xf6 <_exit>
 
-0000009c <__bad_interrupt>:
-  9c:	b1 cf       	rjmp	.-158    	; 0x0 <__vectors>
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	ee eb       	ldi	r30, 0xBE	; 190
+  a0:	f2 e0       	ldi	r31, 0x02	; 2
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a0 36       	cpi	r26, 0x60	; 96
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+  b2:	00 d1       	rcall	.+512    	; 0x2b4 <main>
+  b4:	02 c1       	rjmp	.+516    	; 0x2ba <_exit>
 
-0000009e <wait>:
+000000b6 <__bad_interrupt>:
+  b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
+
+000000b8 <wait>:
 	wait(delay);
 }
 
 void wait(int ms)
 {
 	for (int i=0; i<ms; i++)
-  9e:	18 16       	cp	r1, r24
-  a0:	19 06       	cpc	r1, r25
-  a2:	6c f4       	brge	.+26     	; 0xbe <wait+0x20>
-  a4:	20 e0       	ldi	r18, 0x00	; 0
-  a6:	30 e0       	ldi	r19, 0x00	; 0
+  b8:	18 16       	cp	r1, r24
+  ba:	19 06       	cpc	r1, r25
+  bc:	6c f4       	brge	.+26     	; 0xd8 <wait+0x20>
+  be:	20 e0       	ldi	r18, 0x00	; 0
+  c0:	30 e0       	ldi	r19, 0x00	; 0
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  a8:	ef ec       	ldi	r30, 0xCF	; 207
-  aa:	f7 e0       	ldi	r31, 0x07	; 7
-  ac:	31 97       	sbiw	r30, 0x01	; 1
-  ae:	f1 f7       	brne	.-4      	; 0xac <wait+0xe>
-  b0:	00 c0       	rjmp	.+0      	; 0xb2 <wait+0x14>
-  b2:	00 00       	nop
-  b4:	2f 5f       	subi	r18, 0xFF	; 255
-  b6:	3f 4f       	sbci	r19, 0xFF	; 255
-  b8:	28 17       	cp	r18, r24
-  ba:	39 07       	cpc	r19, r25
-  bc:	a9 f7       	brne	.-22     	; 0xa8 <wait+0xa>
-  be:	08 95       	ret
+  c2:	ef ec       	ldi	r30, 0xCF	; 207
+  c4:	f7 e0       	ldi	r31, 0x07	; 7
+  c6:	31 97       	sbiw	r30, 0x01	; 1
+  c8:	f1 f7       	brne	.-4      	; 0xc6 <wait+0xe>
+  ca:	00 c0       	rjmp	.+0      	; 0xcc <wait+0x14>
+  cc:	00 00       	nop
+  ce:	2f 5f       	subi	r18, 0xFF	; 255
+  d0:	3f 4f       	sbci	r19, 0xFF	; 255
+  d2:	28 17       	cp	r18, r24
+  d4:	39 07       	cpc	r19, r25
+  d6:	a9 f7       	brne	.-22     	; 0xc2 <wait+0xa>
+  d8:	08 95       	ret
 
-000000c0 <BlinkLedsSeperately>:
+000000da <BlinkLedsSeperately>:
 #define F_CPU 8000000
 #include <avr/io.h>
 #include <util/delay.h>
 #include "Week1/Headers/week1.h"
 
 void BlinkLedsSeperately(int delay){
-  c0:	cf 93       	push	r28
-  c2:	df 93       	push	r29
-  c4:	ec 01       	movw	r28, r24
+  da:	cf 93       	push	r28
+  dc:	df 93       	push	r29
+  de:	ec 01       	movw	r28, r24
 	PORTD = 0b00000010;
-  c6:	82 e0       	ldi	r24, 0x02	; 2
-  c8:	82 bb       	out	0x12, r24	; 18
+  e0:	82 e0       	ldi	r24, 0x02	; 2
+  e2:	82 bb       	out	0x12, r24	; 18
 	wait(delay);
-  ca:	ce 01       	movw	r24, r28
-  cc:	e8 df       	rcall	.-48     	; 0x9e <wait>
+  e4:	ce 01       	movw	r24, r28
+  e6:	e8 df       	rcall	.-48     	; 0xb8 <wait>
 	PORTD = 0b00000100;
-  ce:	84 e0       	ldi	r24, 0x04	; 4
-  d0:	82 bb       	out	0x12, r24	; 18
+  e8:	84 e0       	ldi	r24, 0x04	; 4
+  ea:	82 bb       	out	0x12, r24	; 18
 	wait(delay);
-  d2:	ce 01       	movw	r24, r28
-  d4:	e4 df       	rcall	.-56     	; 0x9e <wait>
+  ec:	ce 01       	movw	r24, r28
+  ee:	e4 df       	rcall	.-56     	; 0xb8 <wait>
 }
-  d6:	df 91       	pop	r29
-  d8:	cf 91       	pop	r28
-  da:	08 95       	ret
+  f0:	df 91       	pop	r29
+  f2:	cf 91       	pop	r28
+  f4:	08 95       	ret
 
-000000dc <board_init>:
+000000f6 <Testweek1>:
+		//max wait is 30ms with 8Mhz
+		_delay_ms( 1 ); 
+	}
+}
+
+void Testweek1(){
+  f6:	cf 93       	push	r28
+  f8:	df 93       	push	r29
+  fa:	cd b7       	in	r28, 0x3d	; 61
+  fc:	de b7       	in	r29, 0x3e	; 62
+  fe:	c2 56       	subi	r28, 0x62	; 98
+ 100:	d1 09       	sbc	r29, r1
+ 102:	0f b6       	in	r0, 0x3f	; 63
+ 104:	f8 94       	cli
+ 106:	de bf       	out	0x3e, r29	; 62
+ 108:	0f be       	out	0x3f, r0	; 63
+ 10a:	cd bf       	out	0x3d, r28	; 61
+	DDRD = 0b11111111;
+ 10c:	8f ef       	ldi	r24, 0xFF	; 255
+ 10e:	81 bb       	out	0x11, r24	; 17
+	DDRC = 0b10000000;
+ 110:	90 e8       	ldi	r25, 0x80	; 128
+ 112:	94 bb       	out	0x14, r25	; 20
+	DDRA = 0b11111111;
+ 114:	8a bb       	out	0x1a, r24	; 26
+	DDRB = 0b11111111;
+ 116:	87 bb       	out	0x17, r24	; 23
+	DDRF = 0b11111111;
+ 118:	e1 e6       	ldi	r30, 0x61	; 97
+ 11a:	f0 e0       	ldi	r31, 0x00	; 0
+ 11c:	80 83       	st	Z, r24
+	DDRF = 0b11111111;
+ 11e:	80 83       	st	Z, r24
+	
+	
+	int array[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b01111111,0b00111111,0b00011111,0b00001111,0b00000111,0b00000011,0b00000001,0b00000000};
+ 120:	80 e2       	ldi	r24, 0x20	; 32
+ 122:	e0 e0       	ldi	r30, 0x00	; 0
+ 124:	f1 e0       	ldi	r31, 0x01	; 1
+ 126:	de 01       	movw	r26, r28
+ 128:	11 96       	adiw	r26, 0x01	; 1
+ 12a:	01 90       	ld	r0, Z+
+ 12c:	0d 92       	st	X+, r0
+ 12e:	8a 95       	dec	r24
+ 130:	e1 f7       	brne	.-8      	; 0x12a <Testweek1+0x34>
+	int array2[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b11111110,0b11111100,0b11111000,0b11110000,0b11100000,0b11000000,0b10000000,0b00000000};
+ 132:	80 e2       	ldi	r24, 0x20	; 32
+ 134:	e0 e2       	ldi	r30, 0x20	; 32
+ 136:	f1 e0       	ldi	r31, 0x01	; 1
+ 138:	de 01       	movw	r26, r28
+ 13a:	91 96       	adiw	r26, 0x21	; 33
+ 13c:	01 90       	ld	r0, Z+
+ 13e:	0d 92       	st	X+, r0
+ 140:	8a 95       	dec	r24
+ 142:	e1 f7       	brne	.-8      	; 0x13c <Testweek1+0x46>
+	int array3[] = {0b00011000,0b00111100,0b01111110,0b11111111,0b11100111,0b11000011,0b10000001,0b00000000,0b10000001,0b11000011,0b11100111,0b11111111,0b01111110,0b00111100,0b00011000,0b00000000};
+ 144:	80 e2       	ldi	r24, 0x20	; 32
+ 146:	e0 e4       	ldi	r30, 0x40	; 64
+ 148:	f1 e0       	ldi	r31, 0x01	; 1
+ 14a:	de 01       	movw	r26, r28
+ 14c:	af 5b       	subi	r26, 0xBF	; 191
+ 14e:	bf 4f       	sbci	r27, 0xFF	; 255
+ 150:	01 90       	ld	r0, Z+
+ 152:	0d 92       	st	X+, r0
+ 154:	8a 95       	dec	r24
+ 156:	e1 f7       	brne	.-8      	; 0x150 <Testweek1+0x5a>
+	
+	int state = 1;
+ 158:	22 24       	eor	r2, r2
+ 15a:	23 94       	inc	r2
+ 15c:	31 2c       	mov	r3, r1
+ 15e:	88 24       	eor	r8, r8
+ 160:	83 94       	inc	r8
+ 162:	91 2c       	mov	r9, r1
+ 164:	ce 01       	movw	r24, r28
+ 166:	81 96       	adiw	r24, 0x21	; 33
+ 168:	a3 96       	adiw	r28, 0x23	; 35
+ 16a:	9f af       	std	Y+63, r25	; 0x3f
+ 16c:	8e af       	std	Y+62, r24	; 0x3e
+ 16e:	a3 97       	sbiw	r28, 0x23	; 35
+ 170:	5c 01       	movw	r10, r24
+		//patroon
+		for (int i = 0; i < sizeof(array)/sizeof(array[0]);i++)
+		{
+			PORTD = array[i];
+			PORTB = array2[i];
+			PORTF = array3[i];
+ 172:	0f 2e       	mov	r0, r31
+ 174:	f2 e6       	ldi	r31, 0x62	; 98
+ 176:	4f 2e       	mov	r4, r31
+ 178:	51 2c       	mov	r5, r1
+ 17a:	f0 2d       	mov	r31, r0
+			PORTA = 0b00000001 << i;
+			wait(50);
+		}
+		for (int i = 1; i <7; i++)
+		{
+			PORTA = 0b10000000 >> i;
+ 17c:	68 94       	set
+ 17e:	66 24       	eor	r6, r6
+ 180:	67 f8       	bld	r6, 7
+ 182:	71 2c       	mov	r7, r1
+	int array2[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b11111110,0b11111100,0b11111000,0b11110000,0b11100000,0b11000000,0b10000000,0b00000000};
+	int array3[] = {0b00011000,0b00111100,0b01111110,0b11111111,0b11100111,0b11000011,0b10000001,0b00000000,0b10000001,0b11000011,0b11100111,0b11111111,0b01111110,0b00111100,0b00011000,0b00000000};
+	
+	int state = 1;
+	while(1){
+		if (PINC & 0b00000001)
+ 184:	98 9b       	sbis	0x13, 0	; 19
+ 186:	04 c0       	rjmp	.+8      	; 0x190 <Testweek1+0x9a>
+		{
+			BlinkLedsSeperately(500);
+ 188:	84 ef       	ldi	r24, 0xF4	; 244
+ 18a:	91 e0       	ldi	r25, 0x01	; 1
+ 18c:	a6 df       	rcall	.-180    	; 0xda <BlinkLedsSeperately>
+ 18e:	01 c0       	rjmp	.+2      	; 0x192 <Testweek1+0x9c>
+		}
+		else{
+			PORTD = 0;
+ 190:	12 ba       	out	0x12, r1	; 18
+		}
+		
+		//state
+		if (PINC & 0b00000010)
+ 192:	99 9b       	sbis	0x13, 1	; 19
+ 194:	7e c0       	rjmp	.+252    	; 0x292 <Testweek1+0x19c>
+		{
+			state += 1;
+ 196:	ff ef       	ldi	r31, 0xFF	; 255
+ 198:	2f 1a       	sub	r2, r31
+ 19a:	3f 0a       	sbc	r3, r31
+			if(state == 4){
+ 19c:	84 e0       	ldi	r24, 0x04	; 4
+ 19e:	28 16       	cp	r2, r24
+ 1a0:	31 04       	cpc	r3, r1
+ 1a2:	09 f0       	breq	.+2      	; 0x1a6 <Testweek1+0xb0>
+ 1a4:	76 c0       	rjmp	.+236    	; 0x292 <Testweek1+0x19c>
+ 1a6:	03 e0       	ldi	r16, 0x03	; 3
+ 1a8:	10 e0       	ldi	r17, 0x00	; 0
+ 1aa:	02 c0       	rjmp	.+4      	; 0x1b0 <Testweek1+0xba>
+				state = 1;
+			}
+		}		
+		switch (state)
+ 1ac:	03 e0       	ldi	r16, 0x03	; 3
+ 1ae:	10 e0       	ldi	r17, 0x00	; 0
+		{
+			case 1:
+			for(int i = 0; i < 3; i++){
+				PORTC = 0b10000000;
+ 1b0:	90 e8       	ldi	r25, 0x80	; 128
+ 1b2:	95 bb       	out	0x15, r25	; 21
+				wait(1000);
+ 1b4:	88 ee       	ldi	r24, 0xE8	; 232
+ 1b6:	93 e0       	ldi	r25, 0x03	; 3
+ 1b8:	7f df       	rcall	.-258    	; 0xb8 <wait>
+				PORTC = 0b00000000;;
+ 1ba:	15 ba       	out	0x15, r1	; 21
+				wait(1000);
+ 1bc:	88 ee       	ldi	r24, 0xE8	; 232
+ 1be:	93 e0       	ldi	r25, 0x03	; 3
+ 1c0:	7b df       	rcall	.-266    	; 0xb8 <wait>
+ 1c2:	01 50       	subi	r16, 0x01	; 1
+ 1c4:	11 09       	sbc	r17, r1
+			}
+		}		
+		switch (state)
+		{
+			case 1:
+			for(int i = 0; i < 3; i++){
+ 1c6:	a1 f7       	brne	.-24     	; 0x1b0 <Testweek1+0xba>
+ 1c8:	14 01       	movw	r2, r8
+ 1ca:	1d c0       	rjmp	.+58     	; 0x206 <Testweek1+0x110>
+			state += 1;
+			if(state == 4){
+				state = 1;
+			}
+		}		
+		switch (state)
+ 1cc:	03 e0       	ldi	r16, 0x03	; 3
+ 1ce:	10 e0       	ldi	r17, 0x00	; 0
+				wait(1000);
+			}
+			break;
+			case 2:
+			for(int i = 0; i < 3; i++){
+				PORTC = 0b10000000;
+ 1d0:	e0 e8       	ldi	r30, 0x80	; 128
+ 1d2:	e5 bb       	out	0x15, r30	; 21
+				wait(500);
+ 1d4:	84 ef       	ldi	r24, 0xF4	; 244
+ 1d6:	91 e0       	ldi	r25, 0x01	; 1
+ 1d8:	6f df       	rcall	.-290    	; 0xb8 <wait>
+				PORTC = 0;
+ 1da:	15 ba       	out	0x15, r1	; 21
+				wait(500);				
+ 1dc:	84 ef       	ldi	r24, 0xF4	; 244
+ 1de:	91 e0       	ldi	r25, 0x01	; 1
+ 1e0:	6b df       	rcall	.-298    	; 0xb8 <wait>
+ 1e2:	01 50       	subi	r16, 0x01	; 1
+ 1e4:	11 09       	sbc	r17, r1
+				PORTC = 0b00000000;;
+				wait(1000);
+			}
+			break;
+			case 2:
+			for(int i = 0; i < 3; i++){
+ 1e6:	a1 f7       	brne	.-24     	; 0x1d0 <Testweek1+0xda>
+ 1e8:	0e c0       	rjmp	.+28     	; 0x206 <Testweek1+0x110>
+			state += 1;
+			if(state == 4){
+				state = 1;
+			}
+		}		
+		switch (state)
+ 1ea:	03 e0       	ldi	r16, 0x03	; 3
+ 1ec:	10 e0       	ldi	r17, 0x00	; 0
+				wait(500);				
+			}
+			break;
+			case 3:
+			for(int i = 0; i < 3; i++){
+				PORTC = 0b10000000;
+ 1ee:	f0 e8       	ldi	r31, 0x80	; 128
+ 1f0:	f5 bb       	out	0x15, r31	; 21
+				wait(250);
+ 1f2:	8a ef       	ldi	r24, 0xFA	; 250
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	60 df       	rcall	.-320    	; 0xb8 <wait>
+				PORTC = 0;
+ 1f8:	15 ba       	out	0x15, r1	; 21
+				wait(250);	
+ 1fa:	8a ef       	ldi	r24, 0xFA	; 250
+ 1fc:	90 e0       	ldi	r25, 0x00	; 0
+ 1fe:	5c df       	rcall	.-328    	; 0xb8 <wait>
+ 200:	01 50       	subi	r16, 0x01	; 1
+ 202:	11 09       	sbc	r17, r1
+				PORTC = 0;
+				wait(500);				
+			}
+			break;
+			case 3:
+			for(int i = 0; i < 3; i++){
+ 204:	a1 f7       	brne	.-24     	; 0x1ee <Testweek1+0xf8>
+ 206:	8e 01       	movw	r16, r28
+ 208:	0f 5f       	subi	r16, 0xFF	; 255
+ 20a:	1f 4f       	sbci	r17, 0xFF	; 255
+ 20c:	ce 01       	movw	r24, r28
+ 20e:	81 96       	adiw	r24, 0x21	; 33
+ 210:	6c 01       	movw	r12, r24
+ 212:	fe 01       	movw	r30, r28
+ 214:	ef 5b       	subi	r30, 0xBF	; 191
+ 216:	ff 4f       	sbci	r31, 0xFF	; 255
+ 218:	7f 01       	movw	r14, r30
+		}
+		
+		//patroon
+		for (int i = 0; i < sizeof(array)/sizeof(array[0]);i++)
+		{
+			PORTD = array[i];
+ 21a:	f8 01       	movw	r30, r16
+ 21c:	80 81       	ld	r24, Z
+ 21e:	0e 5f       	subi	r16, 0xFE	; 254
+ 220:	1f 4f       	sbci	r17, 0xFF	; 255
+ 222:	82 bb       	out	0x12, r24	; 18
+			PORTB = array2[i];
+ 224:	f6 01       	movw	r30, r12
+ 226:	80 81       	ld	r24, Z
+ 228:	f2 e0       	ldi	r31, 0x02	; 2
+ 22a:	cf 0e       	add	r12, r31
+ 22c:	d1 1c       	adc	r13, r1
+ 22e:	88 bb       	out	0x18, r24	; 24
+			PORTF = array3[i];
+ 230:	f7 01       	movw	r30, r14
+ 232:	80 81       	ld	r24, Z
+ 234:	f2 e0       	ldi	r31, 0x02	; 2
+ 236:	ef 0e       	add	r14, r31
+ 238:	f1 1c       	adc	r15, r1
+ 23a:	f2 01       	movw	r30, r4
+ 23c:	80 83       	st	Z, r24
+			wait(50);
+ 23e:	82 e3       	ldi	r24, 0x32	; 50
+ 240:	90 e0       	ldi	r25, 0x00	; 0
+ 242:	3a df       	rcall	.-396    	; 0xb8 <wait>
+			}
+			break;
+		}
+		
+		//patroon
+		for (int i = 0; i < sizeof(array)/sizeof(array[0]);i++)
+ 244:	0a 15       	cp	r16, r10
+ 246:	1b 05       	cpc	r17, r11
+ 248:	41 f7       	brne	.-48     	; 0x21a <Testweek1+0x124>
+ 24a:	00 e0       	ldi	r16, 0x00	; 0
+ 24c:	10 e0       	ldi	r17, 0x00	; 0
+		}
+		
+		//looplicht
+		for (int i = 0; i <8; i++)
+		{
+			PORTA = 0b00000001 << i;
+ 24e:	c4 01       	movw	r24, r8
+ 250:	00 2e       	mov	r0, r16
+ 252:	02 c0       	rjmp	.+4      	; 0x258 <Testweek1+0x162>
+ 254:	88 0f       	add	r24, r24
+ 256:	99 1f       	adc	r25, r25
+ 258:	0a 94       	dec	r0
+ 25a:	e2 f7       	brpl	.-8      	; 0x254 <Testweek1+0x15e>
+ 25c:	8b bb       	out	0x1b, r24	; 27
+			wait(50);
+ 25e:	82 e3       	ldi	r24, 0x32	; 50
+ 260:	90 e0       	ldi	r25, 0x00	; 0
+ 262:	2a df       	rcall	.-428    	; 0xb8 <wait>
+			PORTF = array3[i];
+			wait(50);
+		}
+		
+		//looplicht
+		for (int i = 0; i <8; i++)
+ 264:	0f 5f       	subi	r16, 0xFF	; 255
+ 266:	1f 4f       	sbci	r17, 0xFF	; 255
+ 268:	08 30       	cpi	r16, 0x08	; 8
+ 26a:	11 05       	cpc	r17, r1
+ 26c:	81 f7       	brne	.-32     	; 0x24e <Testweek1+0x158>
+ 26e:	84 01       	movw	r16, r8
+			PORTA = 0b00000001 << i;
+			wait(50);
+		}
+		for (int i = 1; i <7; i++)
+		{
+			PORTA = 0b10000000 >> i;
+ 270:	c3 01       	movw	r24, r6
+ 272:	00 2e       	mov	r0, r16
+ 274:	02 c0       	rjmp	.+4      	; 0x27a <Testweek1+0x184>
+ 276:	95 95       	asr	r25
+ 278:	87 95       	ror	r24
+ 27a:	0a 94       	dec	r0
+ 27c:	e2 f7       	brpl	.-8      	; 0x276 <Testweek1+0x180>
+ 27e:	8b bb       	out	0x1b, r24	; 27
+			wait(50);
+ 280:	82 e3       	ldi	r24, 0x32	; 50
+ 282:	90 e0       	ldi	r25, 0x00	; 0
+ 284:	19 df       	rcall	.-462    	; 0xb8 <wait>
+		for (int i = 0; i <8; i++)
+		{
+			PORTA = 0b00000001 << i;
+			wait(50);
+		}
+		for (int i = 1; i <7; i++)
+ 286:	0f 5f       	subi	r16, 0xFF	; 255
+ 288:	1f 4f       	sbci	r17, 0xFF	; 255
+ 28a:	07 30       	cpi	r16, 0x07	; 7
+ 28c:	11 05       	cpc	r17, r1
+ 28e:	81 f7       	brne	.-32     	; 0x270 <Testweek1+0x17a>
+ 290:	79 cf       	rjmp	.-270    	; 0x184 <Testweek1+0x8e>
+			state += 1;
+			if(state == 4){
+				state = 1;
+			}
+		}		
+		switch (state)
+ 292:	f2 e0       	ldi	r31, 0x02	; 2
+ 294:	2f 16       	cp	r2, r31
+ 296:	31 04       	cpc	r3, r1
+ 298:	09 f4       	brne	.+2      	; 0x29c <Testweek1+0x1a6>
+ 29a:	98 cf       	rjmp	.-208    	; 0x1cc <Testweek1+0xd6>
+ 29c:	83 e0       	ldi	r24, 0x03	; 3
+ 29e:	28 16       	cp	r2, r24
+ 2a0:	31 04       	cpc	r3, r1
+ 2a2:	09 f4       	brne	.+2      	; 0x2a6 <Testweek1+0x1b0>
+ 2a4:	a2 cf       	rjmp	.-188    	; 0x1ea <Testweek1+0xf4>
+ 2a6:	91 e0       	ldi	r25, 0x01	; 1
+ 2a8:	29 16       	cp	r2, r25
+ 2aa:	31 04       	cpc	r3, r1
+ 2ac:	09 f0       	breq	.+2      	; 0x2b0 <Testweek1+0x1ba>
+ 2ae:	ab cf       	rjmp	.-170    	; 0x206 <Testweek1+0x110>
+ 2b0:	7d cf       	rjmp	.-262    	; 0x1ac <Testweek1+0xb6>
+
+000002b2 <board_init>:
 #include <asf.h>
 #include <board.h>
 #include <conf_board.h>
 
 void board_init(void)
 {
-  dc:	08 95       	ret
+ 2b2:	08 95       	ret
 
-000000de <main>:
+000002b4 <main>:
 
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
 
 	board_init();
-  de:	fe df       	rcall	.-4      	; 0xdc <board_init>
+ 2b4:	fe df       	rcall	.-4      	; 0x2b2 <board_init>
 	
-	DDRD = 0b11111111;
-  e0:	8f ef       	ldi	r24, 0xFF	; 255
-  e2:	81 bb       	out	0x11, r24	; 17
-	DDRC = 0b00000000;
-  e4:	14 ba       	out	0x14, r1	; 20
+	
 	
 	while (1)
 	{
-		if (PINC & 1)
-  e6:	98 9b       	sbis	0x13, 0	; 19
-  e8:	04 c0       	rjmp	.+8      	; 0xf2 <main+0x14>
-		{
-			BlinkLedsSeperately(500);
-  ea:	84 ef       	ldi	r24, 0xF4	; 244
-  ec:	91 e0       	ldi	r25, 0x01	; 1
-  ee:	e8 df       	rcall	.-48     	; 0xc0 <BlinkLedsSeperately>
-  f0:	fa cf       	rjmp	.-12     	; 0xe6 <main+0x8>
-		}
-		else{
-			PORTD = 0;
-  f2:	12 ba       	out	0x12, r1	; 18
-  f4:	f8 cf       	rjmp	.-16     	; 0xe6 <main+0x8>
+		Testweek1();
+ 2b6:	1f df       	rcall	.-450    	; 0xf6 <Testweek1>
+	}
+ 2b8:	fe cf       	rjmp	.-4      	; 0x2b6 <main+0x2>
 
-000000f6 <_exit>:
-  f6:	f8 94       	cli
+000002ba <_exit>:
+ 2ba:	f8 94       	cli
 
-000000f8 <__stop_program>:
-  f8:	ff cf       	rjmp	.-2      	; 0xf8 <__stop_program>
+000002bc <__stop_program>:
+ 2bc:	ff cf       	rjmp	.-2      	; 0x2bc <__stop_program>

@@ -12,6 +12,7 @@
 
 void BlinkLedsSeperately(int delay);
 void wait(int ms);
+void Testweek1();
 
 
 #endif /* WEEK1_H_ */

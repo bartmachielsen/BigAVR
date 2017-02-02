@@ -40,18 +40,12 @@ int main (void)
 
 	board_init();
 	
-	DDRD = 0b11111111;
-	DDRC = 0b00000000;
+	
 	
 	while (1)
 	{
-		if (PINC & 1)
-		{
-			BlinkLedsSeperately(500);
-		}
-		else{
-			PORTD = 0;
-		}
+		Testweek1();
+		
 	}
 
 	/* Insert application code here, after the board has been initialized. */

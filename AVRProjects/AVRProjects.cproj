@@ -198,7 +198,13 @@
     <Compile Include="src\main.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\Week1\Headers\Statemachine.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\Week1\Headers\week1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Week1\Source\StateMachine.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\Week1\Source\week1c.c">
