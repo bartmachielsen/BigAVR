@@ -9,9 +9,15 @@
 #ifndef WEEK1_H_
 #define WEEK1_H_
 
-
-void BlinkLedsSeperately(int delay);
 void wait(int ms);
+void BlinkLedsSeperately();
+void BlinkLed(int speed, int amount);
+void ledbutton();
+void LoopLight();
+int States(int state);
+void Pattern();
+void ChangePortValue(int port, int bitchange);
+void FullLoop();
 void Testweek1();
 
 
