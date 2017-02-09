@@ -18,6 +18,8 @@ int States(int state);
 void Pattern();
 void ChangePortValue(int port, int bitchange);
 void FullLoop();
+void SetLedCharlieplexing(int ledid);
+void CharliePlexing();
 void Testweek1();
 
 

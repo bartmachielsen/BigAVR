@@ -6,10 +6,13 @@
  */ 
  
  #define F_CPU 8000000
- #include "Week1/Headers/week2.h"
- #include "Week1/Headers/week1.h"
+ #include <avr/interrupt.h>
+ #include "Headers/week2.h"
+ #include "Headers/week1.h"
  #include <avr/io.h>
  #include <util/delay.h>
+ #define SET_ONLY_BIT(var, pos) var = 1 << pos
+ #define CLEAR_ALL(var) var = 0
 
  patroon table[] = {
 	 {0b00111111,500}, //0
@@ -54,6 +57,8 @@
 	 {0b01000000,100},
 	 {0b00000000,100},
  };
+
+ int looplightindex = 0;
   
  void SevenSegment(int Display){
 	if (Display>16)
@@ -80,8 +85,41 @@
 	 }
  }
 
- void Testweek2(){ 	DDRD = 0b11111111;
 
+  void OpdrachtB2(){
+	  DDRD = 0xFF;
+	  DDRC = 0xFF;
+	  EICRA |= 0b00001010;
+	  EIMSK |= 0b00000011;
+	  sei();
+  }
+
+
+
+  ISR(INT0_vect){
+	  CLEAR_ALL(PORTD);
+	  SET_ONLY_BIT(PORTD, 1);
+  }
+
+  ISR(INT1_vect){
+	  if(looplightindex > 7){
+		  looplightindex = 0;
+	  }
+	  SET_ONLY_BIT(PORTC, looplightindex);
+	  looplightindex += 1;
+	  wait(500);
+	  CLEAR_ALL(PORTD);
+	  SET_ONLY_BIT(PORTD, 0);
+  }
+
+
+
+
+
+
+ void Testweek2(){ 	DDRD = 0b11111111;
+	OpdrachtB2();
+	while(1){}
 	while(1){
 		HexidecimaleCijfers();
 		FunDisplay();

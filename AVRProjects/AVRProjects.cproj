@@ -190,24 +190,23 @@
     <Folder Include="src\ASF\mega\utils\assembler\" />
     <Folder Include="src\ASF\mega\utils\preprocessor\" />
     <Folder Include="src\config\" />
-    <Folder Include="src\Week1" />
-    <Folder Include="src\Week1\Headers" />
-    <Folder Include="src\Week1\Source" />
+    <Folder Include="src\Headers\" />
+    <Folder Include="src\Source\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Headers\week1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Headers\week2.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\main.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\Week1\Headers\week1.h">
+    <Compile Include="src\Source\week1.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\Week1\Headers\week2.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\Week1\Source\week1.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\Week1\Source\week2.c">
+    <Compile Include="src\Source\week2.c">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\asf.h">
