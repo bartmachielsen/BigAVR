@@ -207,6 +207,7 @@ void wait(int ms)
  10a:	f0 2d       	mov	r31, r0
 
 	while(1){
+		// opgave 3
 		for(int i = 0; i <17; i++){
  10c:	81 2c       	mov	r8, r1
  10e:	91 2c       	mov	r9, r1
@@ -229,11 +230,11 @@ void wait(int ms)
  12c:	80 81       	ld	r24, Z
  12e:	91 81       	ldd	r25, Z+1	; 0x01
  130:	c3 df       	rcall	.-122    	; 0xb8 <wait>
-
  void Testweek2(){ 
 	DDRD = 0b11111111;
 
 	while(1){
+		// opgave 3
 		for(int i = 0; i <17; i++){
  132:	21 96       	adiw	r28, 0x01	; 1
  134:	f4 e0       	ldi	r31, 0x04	; 4
@@ -246,6 +247,7 @@ void wait(int ms)
 			SevenSegment(i);
 			wait(table[i].delay);
 		}
+		// opgave 4
 		for(int i = 0; i <20; i++){
 			PORTD = FUN[i].Byte;
  142:	88 81       	ld	r24, Y
@@ -255,11 +257,11 @@ void wait(int ms)
  148:	9b 81       	ldd	r25, Y+3	; 0x03
  14a:	b6 df       	rcall	.-148    	; 0xb8 <wait>
  14c:	24 96       	adiw	r28, 0x04	; 4
-	while(1){
 		for(int i = 0; i <17; i++){
 			SevenSegment(i);
 			wait(table[i].delay);
 		}
+		// opgave 4
 		for(int i = 0; i <20; i++){
  14e:	c0 17       	cp	r28, r16
  150:	d1 07       	cpc	r29, r17
