@@ -22,7 +22,7 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/mega/utils/progmem.h \
  d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  ../src/ASF/mega/utils/status_codes.h ../src/main.h \
- ../src/Week1/Headers/week1.h
+ ../src/Week1/Headers/week1.h ../src/Week1/Headers/week2.h
 
 ../src/asf.h:
 
@@ -79,3 +79,5 @@ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../src/main.h:
 
 ../src/Week1/Headers/week1.h:
+
+../src/Week1/Headers/week2.h:

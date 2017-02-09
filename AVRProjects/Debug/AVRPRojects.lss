@@ -3,31 +3,31 @@ AVRPRojects.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000066  00800100  00000312  00000386  2**0
+  0 .data         00000094  00800100  00000162  000001d6  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000312  00000000  00000000  00000074  2**1
+  1 .text         00000162  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  000003ec  2**0
+  2 .comment      00000030  00000000  00000000  0000026a  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000041c  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000029c  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 000000a8  00000000  00000000  00000458  2**0
+  4 .debug_aranges 000000d0  00000000  00000000  000002d8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000e8d  00000000  00000000  00000500  2**0
+  5 .debug_info   00001026  00000000  00000000  000003a8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000009c7  00000000  00000000  0000138d  2**0
+  6 .debug_abbrev 00000b00  00000000  00000000  000013ce  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000ebc  00000000  00000000  00001d54  2**0
+  7 .debug_line   00001211  00000000  00000000  00001ece  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000001b8  00000000  00000000  00002c10  2**2
+  8 .debug_frame  000001ec  00000000  00000000  000030e0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0001148c  00000000  00000000  00002dc8  2**0
+  9 .debug_str    000114ea  00000000  00000000  000032cc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000004f7  00000000  00000000  00014254  2**0
+ 10 .debug_loc    0000055f  00000000  00000000  000147b6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000078  00000000  00000000  0001474b  2**0
+ 11 .debug_ranges 00000090  00000000  00000000  00014d15  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  00003c11  00000000  00000000  000147c3  2**0
+ 12 .debug_macro  00003cd8  00000000  00000000  00014da5  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,34 +116,40 @@ Disassembly of section .text:
   98:	11 e0       	ldi	r17, 0x01	; 1
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	e2 e1       	ldi	r30, 0x12	; 18
-  a0:	f3 e0       	ldi	r31, 0x03	; 3
+  9e:	e2 e6       	ldi	r30, 0x62	; 98
+  a0:	f1 e0       	ldi	r31, 0x01	; 1
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	a6 36       	cpi	r26, 0x66	; 102
+  ac:	a4 39       	cpi	r26, 0x94	; 148
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
-  b2:	2a d1       	rcall	.+596    	; 0x308 <main>
-  b4:	2c c1       	rjmp	.+600    	; 0x30e <_exit>
+  b2:	52 d0       	rcall	.+164    	; 0x158 <main>
+  b4:	54 c0       	rjmp	.+168    	; 0x15e <_exit>
 
 000000b6 <__bad_interrupt>:
   b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
 
 000000b8 <wait>:
-		
-		ChangePortValue(strip, bitchange);
-		wait(100);
-		ChangePortValue(strip,0);
-	}
-}
+#define SET_ONLY_BIT(var, pos) var = 1 << pos
+#define CLEAR_ALL(var) var = 0
+
+void wait(int ms)
+{
+	for (int i=0; i<ms; i++)
   b8:	18 16       	cp	r1, r24
   ba:	19 06       	cpc	r1, r25
   bc:	6c f4       	brge	.+26     	; 0xd8 <wait+0x20>
   be:	20 e0       	ldi	r18, 0x00	; 0
   c0:	30 e0       	ldi	r19, 0x00	; 0
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
   c2:	ef ec       	ldi	r30, 0xCF	; 207
   c4:	f7 e0       	ldi	r31, 0x07	; 7
   c6:	31 97       	sbiw	r30, 0x01	; 1
@@ -157,350 +163,138 @@ Disassembly of section .text:
   d6:	a9 f7       	brne	.-22     	; 0xc2 <wait+0xa>
   d8:	08 95       	ret
 
-000000da <BlinkLedsSeperately>:
-  da:	12 ba       	out	0x12, r1	; 18
-  dc:	80 e8       	ldi	r24, 0x80	; 128
-  de:	82 bb       	out	0x12, r24	; 18
-  e0:	84 ef       	ldi	r24, 0xF4	; 244
-  e2:	91 e0       	ldi	r25, 0x01	; 1
-  e4:	e9 df       	rcall	.-46     	; 0xb8 <wait>
-  e6:	80 e4       	ldi	r24, 0x40	; 64
-  e8:	82 bb       	out	0x12, r24	; 18
-  ea:	84 ef       	ldi	r24, 0xF4	; 244
-  ec:	91 e0       	ldi	r25, 0x01	; 1
-  ee:	e4 cf       	rjmp	.-56     	; 0xb8 <wait>
-  f0:	08 95       	ret
+000000da <SevenSegment>:
+	 {0b01000000,100},
+	 {0b00000000,100},
+ };
+  
+ void SevenSegment(int Display){
+	if (Display>16)
+  da:	81 31       	cpi	r24, 0x11	; 17
+  dc:	91 05       	cpc	r25, r1
+  de:	24 f0       	brlt	.+8      	; 0xe8 <SevenSegment+0xe>
+	{
+		PORTD = table[16].Byte;
+  e0:	80 91 90 01 	lds	r24, 0x0190	; 0x800190 <table+0x40>
+  e4:	82 bb       	out	0x12, r24	; 18
+  e6:	08 95       	ret
+	} else{
+		PORTD = table[Display].Byte;
+  e8:	88 0f       	add	r24, r24
+  ea:	99 1f       	adc	r25, r25
+  ec:	88 0f       	add	r24, r24
+  ee:	99 1f       	adc	r25, r25
+  f0:	fc 01       	movw	r30, r24
+  f2:	e0 5b       	subi	r30, 0xB0	; 176
+  f4:	fe 4f       	sbci	r31, 0xFE	; 254
+  f6:	80 81       	ld	r24, Z
+  f8:	82 bb       	out	0x12, r24	; 18
+  fa:	08 95       	ret
 
-000000f2 <BlinkLed>:
-  f2:	ef 92       	push	r14
-  f4:	ff 92       	push	r15
-  f6:	0f 93       	push	r16
-  f8:	1f 93       	push	r17
-  fa:	cf 93       	push	r28
-  fc:	df 93       	push	r29
-  fe:	12 ba       	out	0x12, r1	; 18
- 100:	16 16       	cp	r1, r22
- 102:	17 06       	cpc	r1, r23
- 104:	6c f4       	brge	.+26     	; 0x120 <BlinkLed+0x2e>
- 106:	8b 01       	movw	r16, r22
- 108:	7c 01       	movw	r14, r24
- 10a:	c0 e0       	ldi	r28, 0x00	; 0
- 10c:	d0 e0       	ldi	r29, 0x00	; 0
- 10e:	92 b3       	in	r25, 0x12	; 18
- 110:	90 58       	subi	r25, 0x80	; 128
- 112:	92 bb       	out	0x12, r25	; 18
- 114:	c7 01       	movw	r24, r14
- 116:	d0 df       	rcall	.-96     	; 0xb8 <wait>
- 118:	21 96       	adiw	r28, 0x01	; 1
- 11a:	c0 17       	cp	r28, r16
- 11c:	d1 07       	cpc	r29, r17
- 11e:	b9 f7       	brne	.-18     	; 0x10e <BlinkLed+0x1c>
- 120:	df 91       	pop	r29
- 122:	cf 91       	pop	r28
- 124:	1f 91       	pop	r17
- 126:	0f 91       	pop	r16
- 128:	ff 90       	pop	r15
- 12a:	ef 90       	pop	r14
- 12c:	08 95       	ret
-
-0000012e <LedButton>:
- 12e:	12 ba       	out	0x12, r1	; 18
- 130:	98 9b       	sbis	0x13, 0	; 19
- 132:	08 c0       	rjmp	.+16     	; 0x144 <LedButton+0x16>
- 134:	82 b3       	in	r24, 0x12	; 18
- 136:	80 58       	subi	r24, 0x80	; 128
- 138:	82 bb       	out	0x12, r24	; 18
- 13a:	84 ef       	ldi	r24, 0xF4	; 244
- 13c:	91 e0       	ldi	r25, 0x01	; 1
- 13e:	bc df       	rcall	.-136    	; 0xb8 <wait>
- 140:	98 99       	sbic	0x13, 0	; 19
- 142:	f8 cf       	rjmp	.-16     	; 0x134 <LedButton+0x6>
- 144:	08 95       	ret
-
-00000146 <LoopLight>:
- 146:	0f 93       	push	r16
- 148:	1f 93       	push	r17
- 14a:	cf 93       	push	r28
- 14c:	df 93       	push	r29
- 14e:	c0 e0       	ldi	r28, 0x00	; 0
- 150:	d0 e0       	ldi	r29, 0x00	; 0
- 152:	01 e0       	ldi	r16, 0x01	; 1
- 154:	10 e0       	ldi	r17, 0x00	; 0
- 156:	c8 01       	movw	r24, r16
- 158:	0c 2e       	mov	r0, r28
- 15a:	02 c0       	rjmp	.+4      	; 0x160 <LoopLight+0x1a>
- 15c:	88 0f       	add	r24, r24
- 15e:	99 1f       	adc	r25, r25
- 160:	0a 94       	dec	r0
- 162:	e2 f7       	brpl	.-8      	; 0x15c <LoopLight+0x16>
- 164:	82 bb       	out	0x12, r24	; 18
- 166:	84 e6       	ldi	r24, 0x64	; 100
- 168:	90 e0       	ldi	r25, 0x00	; 0
- 16a:	a6 df       	rcall	.-180    	; 0xb8 <wait>
- 16c:	21 96       	adiw	r28, 0x01	; 1
- 16e:	c8 30       	cpi	r28, 0x08	; 8
- 170:	d1 05       	cpc	r29, r1
- 172:	89 f7       	brne	.-30     	; 0x156 <LoopLight+0x10>
- 174:	c7 e0       	ldi	r28, 0x07	; 7
- 176:	d0 e0       	ldi	r29, 0x00	; 0
- 178:	01 e0       	ldi	r16, 0x01	; 1
- 17a:	10 e0       	ldi	r17, 0x00	; 0
- 17c:	c8 01       	movw	r24, r16
- 17e:	0c 2e       	mov	r0, r28
- 180:	02 c0       	rjmp	.+4      	; 0x186 <LoopLight+0x40>
- 182:	88 0f       	add	r24, r24
- 184:	99 1f       	adc	r25, r25
- 186:	0a 94       	dec	r0
- 188:	e2 f7       	brpl	.-8      	; 0x182 <LoopLight+0x3c>
- 18a:	82 bb       	out	0x12, r24	; 18
- 18c:	84 e6       	ldi	r24, 0x64	; 100
- 18e:	90 e0       	ldi	r25, 0x00	; 0
- 190:	93 df       	rcall	.-218    	; 0xb8 <wait>
- 192:	21 97       	sbiw	r28, 0x01	; 1
- 194:	99 f7       	brne	.-26     	; 0x17c <LoopLight+0x36>
- 196:	df 91       	pop	r29
- 198:	cf 91       	pop	r28
- 19a:	1f 91       	pop	r17
- 19c:	0f 91       	pop	r16
- 19e:	08 95       	ret
-
-000001a0 <States>:
- 1a0:	0f 93       	push	r16
- 1a2:	1f 93       	push	r17
- 1a4:	cf 93       	push	r28
- 1a6:	df 93       	push	r29
- 1a8:	00 d0       	rcall	.+0      	; 0x1aa <States+0xa>
- 1aa:	00 d0       	rcall	.+0      	; 0x1ac <States+0xc>
- 1ac:	00 d0       	rcall	.+0      	; 0x1ae <States+0xe>
- 1ae:	cd b7       	in	r28, 0x3d	; 61
- 1b0:	de b7       	in	r29, 0x3e	; 62
- 1b2:	8c 01       	movw	r16, r24
- 1b4:	86 e0       	ldi	r24, 0x06	; 6
- 1b6:	e0 e0       	ldi	r30, 0x00	; 0
- 1b8:	f1 e0       	ldi	r31, 0x01	; 1
- 1ba:	de 01       	movw	r26, r28
- 1bc:	11 96       	adiw	r26, 0x01	; 1
- 1be:	01 90       	ld	r0, Z+
- 1c0:	0d 92       	st	X+, r0
- 1c2:	8a 95       	dec	r24
- 1c4:	e1 f7       	brne	.-8      	; 0x1be <States+0x1e>
- 1c6:	98 9b       	sbis	0x13, 0	; 19
- 1c8:	07 c0       	rjmp	.+14     	; 0x1d8 <States+0x38>
- 1ca:	0f 5f       	subi	r16, 0xFF	; 255
- 1cc:	1f 4f       	sbci	r17, 0xFF	; 255
- 1ce:	04 30       	cpi	r16, 0x04	; 4
- 1d0:	11 05       	cpc	r17, r1
- 1d2:	14 f0       	brlt	.+4      	; 0x1d8 <States+0x38>
- 1d4:	00 e0       	ldi	r16, 0x00	; 0
- 1d6:	10 e0       	ldi	r17, 0x00	; 0
- 1d8:	f8 01       	movw	r30, r16
- 1da:	ee 0f       	add	r30, r30
- 1dc:	ff 1f       	adc	r31, r31
- 1de:	ec 0f       	add	r30, r28
- 1e0:	fd 1f       	adc	r31, r29
- 1e2:	63 e0       	ldi	r22, 0x03	; 3
- 1e4:	70 e0       	ldi	r23, 0x00	; 0
- 1e6:	81 81       	ldd	r24, Z+1	; 0x01
- 1e8:	92 81       	ldd	r25, Z+2	; 0x02
- 1ea:	83 df       	rcall	.-250    	; 0xf2 <BlinkLed>
- 1ec:	c8 01       	movw	r24, r16
- 1ee:	26 96       	adiw	r28, 0x06	; 6
- 1f0:	0f b6       	in	r0, 0x3f	; 63
- 1f2:	f8 94       	cli
- 1f4:	de bf       	out	0x3e, r29	; 62
- 1f6:	0f be       	out	0x3f, r0	; 63
- 1f8:	cd bf       	out	0x3d, r28	; 61
- 1fa:	df 91       	pop	r29
- 1fc:	cf 91       	pop	r28
- 1fe:	1f 91       	pop	r17
- 200:	0f 91       	pop	r16
- 202:	08 95       	ret
-
-00000204 <Pattern>:
- 204:	8f 92       	push	r8
- 206:	9f 92       	push	r9
- 208:	af 92       	push	r10
- 20a:	bf 92       	push	r11
- 20c:	cf 92       	push	r12
- 20e:	df 92       	push	r13
- 210:	ef 92       	push	r14
- 212:	ff 92       	push	r15
- 214:	0f 93       	push	r16
- 216:	1f 93       	push	r17
- 218:	cf 93       	push	r28
- 21a:	df 93       	push	r29
- 21c:	cd b7       	in	r28, 0x3d	; 61
- 21e:	de b7       	in	r29, 0x3e	; 62
- 220:	c0 56       	subi	r28, 0x60	; 96
- 222:	d1 09       	sbc	r29, r1
- 224:	0f b6       	in	r0, 0x3f	; 63
- 226:	f8 94       	cli
- 228:	de bf       	out	0x3e, r29	; 62
- 22a:	0f be       	out	0x3f, r0	; 63
- 22c:	cd bf       	out	0x3d, r28	; 61
- 22e:	80 e2       	ldi	r24, 0x20	; 32
- 230:	e6 e0       	ldi	r30, 0x06	; 6
- 232:	f1 e0       	ldi	r31, 0x01	; 1
- 234:	de 01       	movw	r26, r28
- 236:	11 96       	adiw	r26, 0x01	; 1
- 238:	01 90       	ld	r0, Z+
- 23a:	0d 92       	st	X+, r0
- 23c:	8a 95       	dec	r24
- 23e:	e1 f7       	brne	.-8      	; 0x238 <Pattern+0x34>
- 240:	80 e2       	ldi	r24, 0x20	; 32
- 242:	e6 e2       	ldi	r30, 0x26	; 38
- 244:	f1 e0       	ldi	r31, 0x01	; 1
- 246:	de 01       	movw	r26, r28
- 248:	91 96       	adiw	r26, 0x21	; 33
- 24a:	01 90       	ld	r0, Z+
- 24c:	0d 92       	st	X+, r0
- 24e:	8a 95       	dec	r24
- 250:	e1 f7       	brne	.-8      	; 0x24a <Pattern+0x46>
- 252:	80 e2       	ldi	r24, 0x20	; 32
- 254:	e6 e4       	ldi	r30, 0x46	; 70
- 256:	f1 e0       	ldi	r31, 0x01	; 1
- 258:	de 01       	movw	r26, r28
- 25a:	af 5b       	subi	r26, 0xBF	; 191
- 25c:	bf 4f       	sbci	r27, 0xFF	; 255
- 25e:	01 90       	ld	r0, Z+
- 260:	0d 92       	st	X+, r0
- 262:	8a 95       	dec	r24
- 264:	e1 f7       	brne	.-8      	; 0x25e <Pattern+0x5a>
- 266:	8e 01       	movw	r16, r28
- 268:	0f 5f       	subi	r16, 0xFF	; 255
- 26a:	1f 4f       	sbci	r17, 0xFF	; 255
- 26c:	7e 01       	movw	r14, r28
- 26e:	81 e2       	ldi	r24, 0x21	; 33
- 270:	e8 0e       	add	r14, r24
- 272:	f1 1c       	adc	r15, r1
- 274:	6e 01       	movw	r12, r28
- 276:	91 e4       	ldi	r25, 0x41	; 65
- 278:	c9 0e       	add	r12, r25
- 27a:	d1 1c       	adc	r13, r1
- 27c:	47 01       	movw	r8, r14
- 27e:	0f 2e       	mov	r0, r31
- 280:	f2 e6       	ldi	r31, 0x62	; 98
- 282:	af 2e       	mov	r10, r31
- 284:	b1 2c       	mov	r11, r1
- 286:	f0 2d       	mov	r31, r0
- 288:	f8 01       	movw	r30, r16
- 28a:	80 81       	ld	r24, Z
- 28c:	0e 5f       	subi	r16, 0xFE	; 254
- 28e:	1f 4f       	sbci	r17, 0xFF	; 255
- 290:	82 bb       	out	0x12, r24	; 18
- 292:	f7 01       	movw	r30, r14
- 294:	80 81       	ld	r24, Z
- 296:	f2 e0       	ldi	r31, 0x02	; 2
- 298:	ef 0e       	add	r14, r31
- 29a:	f1 1c       	adc	r15, r1
- 29c:	88 bb       	out	0x18, r24	; 24
- 29e:	f6 01       	movw	r30, r12
- 2a0:	80 81       	ld	r24, Z
- 2a2:	f2 e0       	ldi	r31, 0x02	; 2
- 2a4:	cf 0e       	add	r12, r31
- 2a6:	d1 1c       	adc	r13, r1
- 2a8:	f5 01       	movw	r30, r10
- 2aa:	80 83       	st	Z, r24
- 2ac:	84 e6       	ldi	r24, 0x64	; 100
- 2ae:	90 e0       	ldi	r25, 0x00	; 0
- 2b0:	03 df       	rcall	.-506    	; 0xb8 <wait>
- 2b2:	08 15       	cp	r16, r8
- 2b4:	19 05       	cpc	r17, r9
- 2b6:	41 f7       	brne	.-48     	; 0x288 <Pattern+0x84>
- 2b8:	c0 5a       	subi	r28, 0xA0	; 160
- 2ba:	df 4f       	sbci	r29, 0xFF	; 255
- 2bc:	0f b6       	in	r0, 0x3f	; 63
- 2be:	f8 94       	cli
- 2c0:	de bf       	out	0x3e, r29	; 62
- 2c2:	0f be       	out	0x3f, r0	; 63
- 2c4:	cd bf       	out	0x3d, r28	; 61
- 2c6:	df 91       	pop	r29
- 2c8:	cf 91       	pop	r28
- 2ca:	1f 91       	pop	r17
- 2cc:	0f 91       	pop	r16
- 2ce:	ff 90       	pop	r15
- 2d0:	ef 90       	pop	r14
- 2d2:	df 90       	pop	r13
- 2d4:	cf 90       	pop	r12
- 2d6:	bf 90       	pop	r11
- 2d8:	af 90       	pop	r10
- 2da:	9f 90       	pop	r9
- 2dc:	8f 90       	pop	r8
- 2de:	08 95       	ret
-
-000002e0 <Testweek1>:
-
-
-void Testweek1(){
-	//	D,A,B,E,F AS OUTPUT	
-	//  C AS INPUT
-	DDRA = 0b11111111; 
- 2e0:	8f ef       	ldi	r24, 0xFF	; 255
- 2e2:	8a bb       	out	0x1a, r24	; 26
-	DDRB = 0b11111111; 
- 2e4:	87 bb       	out	0x17, r24	; 23
-	DDRC = 0b10000000;
- 2e6:	90 e8       	ldi	r25, 0x80	; 128
- 2e8:	94 bb       	out	0x14, r25	; 20
-	DDRD = 0b11111111; 
- 2ea:	81 bb       	out	0x11, r24	; 17
-	DDRE = 0b11111111; 
- 2ec:	82 b9       	out	0x02, r24	; 2
-	DDRF = 0b11111111;
- 2ee:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <__TEXT_REGION_LENGTH__+0x7e0061>
-	
-	
-	
-	int state = 0;
- 2f2:	c0 e0       	ldi	r28, 0x00	; 0
- 2f4:	d0 e0       	ldi	r29, 0x00	; 0
-	while(1){
-		BlinkLedsSeperately();
- 2f6:	f1 de       	rcall	.-542    	; 0xda <BlinkLedsSeperately>
-		LedButton();
- 2f8:	1a df       	rcall	.-460    	; 0x12e <LedButton>
-		LoopLight();
- 2fa:	25 df       	rcall	.-438    	; 0x146 <LoopLight>
-		state = States(state);
- 2fc:	ce 01       	movw	r24, r28
- 2fe:	50 df       	rcall	.-352    	; 0x1a0 <States>
- 300:	ec 01       	movw	r28, r24
-		Pattern();
- 302:	80 df       	rcall	.-256    	; 0x204 <Pattern>
-		//FullLoop();
+000000fc <Testweek2>:
 	}
- 304:	f8 cf       	rjmp	.-16     	; 0x2f6 <Testweek1+0x16>
+ }
 
-00000306 <board_init>:
+ void Testweek2(){ 
+	DDRD = 0b11111111;
+  fc:	8f ef       	ldi	r24, 0xFF	; 255
+  fe:	81 bb       	out	0x11, r24	; 17
+ 100:	0f 2e       	mov	r0, r31
+ 102:	f2 e5       	ldi	r31, 0x52	; 82
+ 104:	ef 2e       	mov	r14, r31
+ 106:	f1 e0       	ldi	r31, 0x01	; 1
+ 108:	ff 2e       	mov	r15, r31
+ 10a:	f0 2d       	mov	r31, r0
+
+	while(1){
+		for(int i = 0; i <17; i++){
+ 10c:	81 2c       	mov	r8, r1
+ 10e:	91 2c       	mov	r9, r1
+ 110:	0f 2e       	mov	r0, r31
+ 112:	f0 e0       	ldi	r31, 0x00	; 0
+ 114:	cf 2e       	mov	r12, r31
+ 116:	f1 e0       	ldi	r31, 0x01	; 1
+ 118:	df 2e       	mov	r13, r31
+ 11a:	f0 2d       	mov	r31, r0
+ 11c:	00 e5       	ldi	r16, 0x50	; 80
+ 11e:	11 e0       	ldi	r17, 0x01	; 1
+ 120:	57 01       	movw	r10, r14
+ 122:	c8 2d       	mov	r28, r8
+ 124:	d9 2d       	mov	r29, r9
+			SevenSegment(i);
+ 126:	ce 01       	movw	r24, r28
+ 128:	d8 df       	rcall	.-80     	; 0xda <SevenSegment>
+			wait(table[i].delay);
+ 12a:	f5 01       	movw	r30, r10
+ 12c:	80 81       	ld	r24, Z
+ 12e:	91 81       	ldd	r25, Z+1	; 0x01
+ 130:	c3 df       	rcall	.-122    	; 0xb8 <wait>
+
+ void Testweek2(){ 
+	DDRD = 0b11111111;
+
+	while(1){
+		for(int i = 0; i <17; i++){
+ 132:	21 96       	adiw	r28, 0x01	; 1
+ 134:	f4 e0       	ldi	r31, 0x04	; 4
+ 136:	af 0e       	add	r10, r31
+ 138:	b1 1c       	adc	r11, r1
+ 13a:	c1 31       	cpi	r28, 0x11	; 17
+ 13c:	d1 05       	cpc	r29, r1
+ 13e:	99 f7       	brne	.-26     	; 0x126 <Testweek2+0x2a>
+ 140:	e6 01       	movw	r28, r12
+			SevenSegment(i);
+			wait(table[i].delay);
+		}
+		for(int i = 0; i <20; i++){
+			PORTD = FUN[i].Byte;
+ 142:	88 81       	ld	r24, Y
+ 144:	82 bb       	out	0x12, r24	; 18
+			wait(FUN[i].delay);
+ 146:	8a 81       	ldd	r24, Y+2	; 0x02
+ 148:	9b 81       	ldd	r25, Y+3	; 0x03
+ 14a:	b6 df       	rcall	.-148    	; 0xb8 <wait>
+ 14c:	24 96       	adiw	r28, 0x04	; 4
+	while(1){
+		for(int i = 0; i <17; i++){
+			SevenSegment(i);
+			wait(table[i].delay);
+		}
+		for(int i = 0; i <20; i++){
+ 14e:	c0 17       	cp	r28, r16
+ 150:	d1 07       	cpc	r29, r17
+ 152:	b9 f7       	brne	.-18     	; 0x142 <Testweek2+0x46>
+ 154:	e5 cf       	rjmp	.-54     	; 0x120 <Testweek2+0x24>
+
+00000156 <board_init>:
 #include <asf.h>
 #include <board.h>
 #include <conf_board.h>
 
 void board_init(void)
 {
- 306:	08 95       	ret
+ 156:	08 95       	ret
 
-00000308 <main>:
+00000158 <main>:
 
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
 
 	board_init();
- 308:	fe df       	rcall	.-4      	; 0x306 <board_init>
-	
+ 158:	fe df       	rcall	.-4      	; 0x156 <board_init>
 	
 	
 	while (1)
 	{
-		Testweek1();
- 30a:	ea df       	rcall	.-44     	; 0x2e0 <Testweek1>
-		
+		//Testweek1();
+		Testweek2();
+ 15a:	d0 df       	rcall	.-96     	; 0xfc <Testweek2>
 	}
- 30c:	fe cf       	rjmp	.-4      	; 0x30a <main+0x2>
+ 15c:	fe cf       	rjmp	.-4      	; 0x15a <main+0x2>
 
-0000030e <_exit>:
- 30e:	f8 94       	cli
+0000015e <_exit>:
+ 15e:	f8 94       	cli
 
-00000310 <__stop_program>:
- 310:	ff cf       	rjmp	.-2      	; 0x310 <__stop_program>
+00000160 <__stop_program>:
+ 160:	ff cf       	rjmp	.-2      	; 0x160 <__stop_program>

@@ -25,10 +25,52 @@ Discarded input sections
  .text          0x00000000        0x0 src/Week1/Source/week1.o
  .data          0x00000000        0x0 src/Week1/Source/week1.o
  .bss           0x00000000        0x0 src/Week1/Source/week1.o
+ .text.BlinkLedsSeperately
+                0x00000000       0x1c src/Week1/Source/week1.o
+ .text.BlinkLed
+                0x00000000       0x3e src/Week1/Source/week1.o
+ .text.LedButton
+                0x00000000       0x1a src/Week1/Source/week1.o
+ .text.LoopLight
+                0x00000000       0x5e src/Week1/Source/week1.o
+ .rodata        0x00000000       0x66 src/Week1/Source/week1.o
+ .text.States   0x00000000       0x66 src/Week1/Source/week1.o
+ .text.Pattern  0x00000000       0xde src/Week1/Source/week1.o
  .text.ChangePortValue
                 0x00000000       0x34 src/Week1/Source/week1.o
  .text.FullLoop
                 0x00000000      0x106 src/Week1/Source/week1.o
+ .text.Testweek1
+                0x00000000       0x30 src/Week1/Source/week1.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .group         0x00000000        0x8 src/Week1/Source/week2.o
+ .text          0x00000000        0x0 src/Week1/Source/week2.o
+ .data          0x00000000        0x0 src/Week1/Source/week2.o
+ .bss           0x00000000        0x0 src/Week1/Source/week2.o
+ .debug_macro   0x00000000      0xa66 src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0x10 src/Week1/Source/week2.o
+ .debug_macro   0x00000000      0x1c9 src/Week1/Source/week2.o
+ .debug_macro   0x00000000      0x2fc src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0x9e src/Week1/Source/week2.o
+ .debug_macro   0x00000000     0x14c5 src/Week1/Source/week2.o
+ .debug_macro   0x00000000      0x203 src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0xcb src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0x34 src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0x18 src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0x6c src/Week1/Source/week2.o
+ .debug_macro   0x00000000       0x10 src/Week1/Source/week2.o
+ .debug_macro   0x00000000      0x166 src/Week1/Source/week2.o
  .group         0x00000000        0x8 src/ASF/common/boards/user_board/init.o
  .group         0x00000000        0x8 src/ASF/common/boards/user_board/init.o
  .group         0x00000000        0x8 src/ASF/common/boards/user_board/init.o
@@ -171,6 +213,7 @@ Linker script and memory map
 Address of section .data set to 0x800100
 LOAD D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
 LOAD src/Week1/Source/week1.o
+LOAD src/Week1/Source/week2.o
 LOAD src/ASF/common/boards/user_board/init.o
 LOAD src/main.o
 START GROUP
@@ -280,7 +323,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x312
+.text           0x00000000      0x162
  *(.vectors)
  .vectors       0x00000000       0x8c D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
                 0x00000000                __vector_default
@@ -376,35 +419,22 @@ END GROUP
  *(.text.*)
  .text.wait     0x000000b8       0x22 src/Week1/Source/week1.o
                 0x000000b8                wait
- .text.BlinkLedsSeperately
-                0x000000da       0x18 src/Week1/Source/week1.o
-                0x000000da                BlinkLedsSeperately
- .text.BlinkLed
-                0x000000f2       0x3c src/Week1/Source/week1.o
-                0x000000f2                BlinkLed
- .text.LedButton
-                0x0000012e       0x18 src/Week1/Source/week1.o
-                0x0000012e                LedButton
- .text.LoopLight
-                0x00000146       0x5a src/Week1/Source/week1.o
-                0x00000146                LoopLight
- .text.States   0x000001a0       0x64 src/Week1/Source/week1.o
-                0x000001a0                States
- .text.Pattern  0x00000204       0xdc src/Week1/Source/week1.o
-                0x00000204                Pattern
- .text.Testweek1
-                0x000002e0       0x26 src/Week1/Source/week1.o
-                0x000002e0                Testweek1
+ .text.SevenSegment
+                0x000000da       0x22 src/Week1/Source/week2.o
+                0x000000da                SevenSegment
+ .text.Testweek2
+                0x000000fc       0x5a src/Week1/Source/week2.o
+                0x000000fc                Testweek2
  .text.board_init
-                0x00000306        0x2 src/ASF/common/boards/user_board/init.o
-                0x00000306                board_init
- .text.main     0x00000308        0x6 src/main.o
-                0x00000308                main
-                0x0000030e                . = ALIGN (0x2)
+                0x00000156        0x2 src/ASF/common/boards/user_board/init.o
+                0x00000156                board_init
+ .text.main     0x00000158        0x6 src/main.o
+                0x00000158                main
+                0x0000015e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000030e        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
-                0x0000030e                _exit
-                0x0000030e                exit
+ .fini9         0x0000015e        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
+                0x0000015e                _exit
+                0x0000015e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -423,36 +453,39 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000030e        0x4 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000015e        0x4 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000312                _etext = .
+                0x00000162                _etext = .
 
-.data           0x00800100       0x66 load address 0x00000312
+.data           0x00800100       0x94 load address 0x00000162
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.FUN      0x00800100       0x50 src/Week1/Source/week2.o
+                0x00800100                FUN
+ .data.table    0x00800150       0x44 src/Week1/Source/week2.o
+                0x00800150                table
  *(.rodata)
- .rodata        0x00800100       0x66 src/Week1/Source/week1.o
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800166                . = ALIGN (0x2)
-                0x00800166                _edata = .
-                0x00800166                PROVIDE (__data_end, .)
+                0x00800194                . = ALIGN (0x2)
+                0x00800194                _edata = .
+                0x00800194                PROVIDE (__data_end, .)
 
-.bss            0x00800166        0x0
+.bss            0x00800194        0x0
                 [!provide]                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
                 [!provide]                PROVIDE (__bss_end, .)
-                0x00000312                __data_load_start = LOADADDR (.data)
-                0x00000378                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000162                __data_load_start = LOADADDR (.data)
+                0x000001f6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800166        0x0
+.noinit         0x00800194        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800166                _end = .
+                0x00800194                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -496,6 +529,7 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x30 src/Week1/Source/week1.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 src/Week1/Source/week2.o
  .comment       0x00000030       0x31 src/ASF/common/boards/user_board/init.o
  .comment       0x00000030       0x31 src/main.o
 
@@ -519,58 +553,67 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xa8
+.debug_aranges  0x00000000       0xd0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x68 src/Week1/Source/week1.o
  .debug_aranges
-                0x00000068       0x20 src/ASF/common/boards/user_board/init.o
+                0x00000068       0x28 src/Week1/Source/week2.o
  .debug_aranges
-                0x00000088       0x20 src/main.o
+                0x00000090       0x20 src/ASF/common/boards/user_board/init.o
+ .debug_aranges
+                0x000000b0       0x20 src/main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xe8d
+.debug_info     0x00000000     0x1026
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x780 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_info    0x00000780      0x5e4 src/Week1/Source/week1.o
- .debug_info    0x00000d64       0x7c src/ASF/common/boards/user_board/init.o
- .debug_info    0x00000de0       0xad src/main.o
+ .debug_info    0x00000d64      0x199 src/Week1/Source/week2.o
+ .debug_info    0x00000efd       0x7c src/ASF/common/boards/user_board/init.o
+ .debug_info    0x00000f79       0xad src/main.o
 
-.debug_abbrev   0x00000000      0x9c7
+.debug_abbrev   0x00000000      0xb00
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x718 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_abbrev  0x00000718      0x1ed src/Week1/Source/week1.o
- .debug_abbrev  0x00000905       0x47 src/ASF/common/boards/user_board/init.o
- .debug_abbrev  0x0000094c       0x7b src/main.o
+ .debug_abbrev  0x00000905      0x139 src/Week1/Source/week2.o
+ .debug_abbrev  0x00000a3e       0x47 src/ASF/common/boards/user_board/init.o
+ .debug_abbrev  0x00000a85       0x7b src/main.o
 
-.debug_line     0x00000000      0xebc
+.debug_line     0x00000000     0x1211
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_line    0x00000169      0x5ed src/Week1/Source/week1.o
- .debug_line    0x00000756      0x391 src/ASF/common/boards/user_board/init.o
- .debug_line    0x00000ae7      0x3d5 src/main.o
+ .debug_line    0x00000756      0x34a src/Week1/Source/week2.o
+ .debug_line    0x00000aa0      0x391 src/ASF/common/boards/user_board/init.o
+ .debug_line    0x00000e31      0x3e0 src/main.o
 
-.debug_frame    0x00000000      0x1b8
+.debug_frame    0x00000000      0x1ec
  *(.debug_frame)
  .debug_frame   0x00000000      0x170 src/Week1/Source/week1.o
- .debug_frame   0x00000170       0x24 src/ASF/common/boards/user_board/init.o
- .debug_frame   0x00000194       0x24 src/main.o
+ .debug_frame   0x00000170       0x34 src/Week1/Source/week2.o
+ .debug_frame   0x000001a4       0x24 src/ASF/common/boards/user_board/init.o
+ .debug_frame   0x000001c8       0x24 src/main.o
 
-.debug_str      0x00000000    0x1148c
+.debug_str      0x00000000    0x114ea
  *(.debug_str)
  .debug_str     0x00000000      0x27d D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_str     0x0000027d     0x71aa src/Week1/Source/week1.o
                                0x724d (size before relaxing)
- .debug_str     0x00007427     0xa049 src/ASF/common/boards/user_board/init.o
+ .debug_str     0x00007427       0x5e src/Week1/Source/week2.o
+                               0x70aa (size before relaxing)
+ .debug_str     0x00007485     0xa049 src/ASF/common/boards/user_board/init.o
                               0x10dc1 (size before relaxing)
- .debug_str     0x00011470       0x1c src/main.o
-                              0x10dc6 (size before relaxing)
+ .debug_str     0x000114ce       0x1c src/main.o
+                              0x10dd0 (size before relaxing)
 
-.debug_loc      0x00000000      0x4f7
+.debug_loc      0x00000000      0x55f
  *(.debug_loc)
  .debug_loc     0x00000000      0x4f7 src/Week1/Source/week1.o
+ .debug_loc     0x000004f7       0x68 src/Week1/Source/week2.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -590,13 +633,14 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x78
+.debug_ranges   0x00000000       0x90
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x58 src/Week1/Source/week1.o
- .debug_ranges  0x00000058       0x10 src/ASF/common/boards/user_board/init.o
- .debug_ranges  0x00000068       0x10 src/main.o
+ .debug_ranges  0x00000058       0x18 src/Week1/Source/week2.o
+ .debug_ranges  0x00000070       0x10 src/ASF/common/boards/user_board/init.o
+ .debug_ranges  0x00000080       0x10 src/main.o
 
-.debug_macro    0x00000000     0x3c11
+.debug_macro    0x00000000     0x3cd8
  *(.debug_macro)
  .debug_macro   0x00000000       0xd7 src/Week1/Source/week1.o
  .debug_macro   0x000000d7      0xa66 src/Week1/Source/week1.o
@@ -612,21 +656,22 @@ END GROUP
  .debug_macro   0x0000288f       0x6c src/Week1/Source/week1.o
  .debug_macro   0x000028fb       0x10 src/Week1/Source/week1.o
  .debug_macro   0x0000290b      0x166 src/Week1/Source/week1.o
- .debug_macro   0x00002a71      0x152 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00002bc3       0x22 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00002be5      0x166 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00002d4b       0x1c src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00002d67       0x35 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00002d9c       0x66 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00002e02      0x652 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00003454       0x44 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00003498       0x69 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00003501       0x2c src/ASF/common/boards/user_board/init.o
- .debug_macro   0x0000352d       0x10 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x0000353d      0x175 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x000036b2       0x40 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x000036f2      0x100 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x000037f2      0x2b9 src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00003aab      0x166 src/main.o
+ .debug_macro   0x00002a71       0xbd src/Week1/Source/week2.o
+ .debug_macro   0x00002b2e      0x152 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00002c80       0x22 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00002ca2      0x166 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00002e08       0x1c src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00002e24       0x35 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00002e59       0x66 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00002ebf      0x652 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00003511       0x44 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00003555       0x69 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x000035be       0x2c src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x000035ea       0x10 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x000035fa      0x175 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x0000376f       0x40 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x000037af      0x100 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x000038af      0x2b9 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00003b68      0x170 src/main.o
 OUTPUT(AVRPRojects.elf elf32-avr)
 LOAD linker stubs

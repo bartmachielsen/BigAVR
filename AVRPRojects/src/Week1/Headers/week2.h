@@ -9,8 +9,13 @@
 #ifndef WEEK2_H_
 #define WEEK2_H_
 
+typedef struct{
+	int Byte;
+	int delay;
+} patroon;
+
+void SevenSegment(int Display);
 void Testweek2();
-void OpdrachtB3();
 
 
 
