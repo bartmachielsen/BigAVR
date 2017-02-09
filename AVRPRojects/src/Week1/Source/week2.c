@@ -64,20 +64,26 @@
 	}
  }
 
+ void HexidecimaleCijfers(){
+	 // Opgave 3
+	 for(int i = 0; i <17; i++){
+		 SevenSegment(i);
+		 wait(table[i].delay);
+	 }
+ }
+
+ void FunDisplay(){
+ 	 // Opgave 4
+	 for(int i = 0; i <20; i++){
+		 PORTD = FUN[i].Byte;
+		 wait(FUN[i].delay);
+	 }
+ }
+
  void Testweek2(){ 	DDRD = 0b11111111;
 
 	while(1){
-		// opgave 3
-		for(int i = 0; i <17; i++){
-			SevenSegment(i);
-			wait(table[i].delay);
-		}
-		// opgave 4
-		for(int i = 0; i <20; i++){
-			PORTD = FUN[i].Byte;
-			wait(FUN[i].delay);
-		}
-
-
+		HexidecimaleCijfers();
+		FunDisplay();
 	}
  }
