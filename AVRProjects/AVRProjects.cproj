@@ -201,7 +201,13 @@
     <Compile Include="src\Week1\Headers\week1.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\Week1\Headers\week2.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\Week1\Source\week1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Week1\Source\week2.c">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\asf.h">

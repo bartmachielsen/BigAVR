@@ -35,7 +35,7 @@ void BlinkLedsSeperately(){
 	{
 		TOGGLE_BIT(PORTD, 7);
 		wait(500);
-	}}// OPGAVE B4void LoopLight(){	for(int i = 0; i < 8; i ++){		SET_ONLY_BIT(PORTD, i);		wait(50);	}	for(int i = 7; i > 0; i--){		SET_ONLY_BIT(PORTD, i);		wait(50);	}}// OPGAVE B6int States(int state){	int speeds[] = {1000,500,250};	int maxstate = 3;	if (CHECK_BIT(PINC,0))
+	}}// OPGAVE B4void LoopLight(){	for(int i = 0; i < 8; i ++){		SET_ONLY_BIT(PORTD, i);		wait(100);	}	for(int i = 7; i > 0; i--){		SET_ONLY_BIT(PORTD, i);		wait(100);	}}// OPGAVE B6int States(int state){	int speeds[] = {1000,500,250};	int maxstate = 3;	if (CHECK_BIT(PINC,0))
 	{
 		state += 1;
 		if(state > maxstate){
@@ -46,5 +46,5 @@ void BlinkLedsSeperately(){
 		PORTD = array[i];
 		PORTB = array2[i];
 		PORTF = array3[i];
-		wait(50);
-	}}void ChangePortValue(int port, int bitchange){	switch(port){		case 0:	PORTA = bitchange;		break;		case 1:	PORTB = bitchange;		break;		case 2:	PORTD = bitchange;		break;		case 3:	PORTE = bitchange;		break;		case 4:	PORTF = bitchange;		break;	}}void FullLoop(){	int amountofstrips = 5;	int amountofleds = 8;	for(int i = 0; i < amountofstrips*amountofleds; i++ ){		int bitchange = 1 << (i%8);		int strip = i/amountofleds;		if(i%amountofleds == 0){			ChangePortValue(strip-1,0);		}				ChangePortValue(strip, bitchange);		wait(50);		ChangePortValue(strip,0);	}	for(int i = amountofstrips*amountofleds; i > 1; i--){		int bitchange = 1 << (i%8);		int strip = i/amountofleds;		if(i%amountofleds == 0){			ChangePortValue(strip-1,0);		}				ChangePortValue(strip, bitchange);		wait(50);		ChangePortValue(strip,0);	}}void Testweek1(){	//	D,A,B,E,F AS OUTPUT		//  C AS INPUT	DDRA = 0b11111111; 	DDRB = 0b11111111; 	DDRC = 0b10000000;	DDRD = 0b11111111; 	DDRE = 0b11111111; 	DDRF = 0b11111111;				int state = 0;	while(1){		BlinkLedsSeperately();		LedButton();		LoopLight();		state = States(state);		Pattern();		FullLoop();	}	}
+		wait(100);
+	}}void ChangePortValue(int port, int bitchange){	switch(port){		case 0:	PORTA = bitchange;		break;		case 1:	PORTB = bitchange;		break;		case 2:	PORTD = bitchange;		break;		case 3:	PORTE = bitchange;		break;		case 4:	PORTF = bitchange;		break;	}}void FullLoop(){	int amountofstrips = 5;	int amountofleds = 8;	for(int i = 0; i < amountofstrips*amountofleds; i++ ){		int bitchange = 1 << (i%8);		int strip = i/amountofleds;		if(i%amountofleds == 0){			ChangePortValue(strip-1,0);		}				ChangePortValue(strip, bitchange);		wait(100);		ChangePortValue(strip,0);	}	for(int i = amountofstrips*amountofleds; i > 1; i--){		int bitchange = 1 << (i%8);		int strip = i/amountofleds;		if(i%amountofleds == 0){			ChangePortValue(strip-1,0);		}				ChangePortValue(strip, bitchange);		wait(100);		ChangePortValue(strip,0);	}}void Testweek1(){	//	D,A,B,E,F AS OUTPUT		//  C AS INPUT	DDRA = 0b11111111; 	DDRB = 0b11111111; 	DDRC = 0b10000000;	DDRD = 0b11111111; 	DDRE = 0b11111111; 	DDRF = 0b11111111;				int state = 0;	while(1){		BlinkLedsSeperately();		LedButton();		LoopLight();		state = States(state);		Pattern();		//FullLoop();	}	}

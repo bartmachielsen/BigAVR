@@ -3,31 +3,31 @@ AVRPRojects.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000066  00800100  0000043e  000004b2  2**0
+  0 .data         00000066  00800100  00000312  00000386  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000043e  00000000  00000000  00000074  2**1
+  1 .text         00000312  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000518  2**0
+  2 .comment      00000030  00000000  00000000  000003ec  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000548  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000041c  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 000000a8  00000000  00000000  00000584  2**0
+  4 .debug_aranges 000000a8  00000000  00000000  00000458  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000e96  00000000  00000000  0000062c  2**0
+  5 .debug_info   00000e8d  00000000  00000000  00000500  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000009c7  00000000  00000000  000014c2  2**0
+  6 .debug_abbrev 000009c7  00000000  00000000  0000138d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000ec6  00000000  00000000  00001e89  2**0
+  7 .debug_line   00000ebc  00000000  00000000  00001d54  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000001b8  00000000  00000000  00002d50  2**2
+  8 .debug_frame  000001b8  00000000  00000000  00002c10  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00011482  00000000  00000000  00002f08  2**0
+  9 .debug_str    0001148c  00000000  00000000  00002dc8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000004f7  00000000  00000000  0001438a  2**0
+ 10 .debug_loc    000004f7  00000000  00000000  00014254  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000078  00000000  00000000  00014881  2**0
+ 11 .debug_ranges 00000078  00000000  00000000  0001474b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  00003c11  00000000  00000000  000148f9  2**0
+ 12 .debug_macro  00003c11  00000000  00000000  000147c3  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,8 +116,8 @@ Disassembly of section .text:
   98:	11 e0       	ldi	r17, 0x01	; 1
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	ee e3       	ldi	r30, 0x3E	; 62
-  a0:	f4 e0       	ldi	r31, 0x04	; 4
+  9e:	e2 e1       	ldi	r30, 0x12	; 18
+  a0:	f3 e0       	ldi	r31, 0x03	; 3
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
@@ -126,30 +126,24 @@ Disassembly of section .text:
   ac:	a6 36       	cpi	r26, 0x66	; 102
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
-  b2:	c0 d1       	rcall	.+896    	; 0x434 <main>
-  b4:	c2 c1       	rjmp	.+900    	; 0x43a <_exit>
+  b2:	2a d1       	rcall	.+596    	; 0x308 <main>
+  b4:	2c c1       	rjmp	.+600    	; 0x30e <_exit>
 
 000000b6 <__bad_interrupt>:
   b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
 
 000000b8 <wait>:
-#define SET_ONLY_BIT(var, pos) var = 1 << pos
-#define CLEAR_ALL(var) var = 0
-
-void wait(int ms)
-{
-	for (int i=0; i<ms; i++)
+		
+		ChangePortValue(strip, bitchange);
+		wait(100);
+		ChangePortValue(strip,0);
+	}
+}
   b8:	18 16       	cp	r1, r24
   ba:	19 06       	cpc	r1, r25
   bc:	6c f4       	brge	.+26     	; 0xd8 <wait+0x20>
   be:	20 e0       	ldi	r18, 0x00	; 0
   c0:	30 e0       	ldi	r19, 0x00	; 0
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
   c2:	ef ec       	ldi	r30, 0xCF	; 207
   c4:	f7 e0       	ldi	r31, 0x07	; 7
   c6:	31 97       	sbiw	r30, 0x01	; 1
@@ -164,44 +158,27 @@ void wait(int ms)
   d8:	08 95       	ret
 
 000000da <BlinkLedsSeperately>:
-		_delay_ms( 1 );
-	}
-}
-//	OPGAVE B2
-void BlinkLedsSeperately(){
-	CLEAR_ALL(PORTD);
   da:	12 ba       	out	0x12, r1	; 18
-	SET_ONLY_BIT(PORTD,7);
   dc:	80 e8       	ldi	r24, 0x80	; 128
   de:	82 bb       	out	0x12, r24	; 18
-	wait(500);
   e0:	84 ef       	ldi	r24, 0xF4	; 244
   e2:	91 e0       	ldi	r25, 0x01	; 1
   e4:	e9 df       	rcall	.-46     	; 0xb8 <wait>
-	SET_ONLY_BIT(PORTD,6);
   e6:	80 e4       	ldi	r24, 0x40	; 64
   e8:	82 bb       	out	0x12, r24	; 18
-	wait(500);
   ea:	84 ef       	ldi	r24, 0xF4	; 244
   ec:	91 e0       	ldi	r25, 0x01	; 1
   ee:	e4 cf       	rjmp	.-56     	; 0xb8 <wait>
   f0:	08 95       	ret
 
 000000f2 <BlinkLed>:
-}
-
-
-void BlinkLed(int speed, int amount)
-{
   f2:	ef 92       	push	r14
   f4:	ff 92       	push	r15
   f6:	0f 93       	push	r16
   f8:	1f 93       	push	r17
   fa:	cf 93       	push	r28
   fc:	df 93       	push	r29
-	CLEAR_ALL(PORTD);
   fe:	12 ba       	out	0x12, r1	; 18
-	for(int i = 0; i < amount; i++){
  100:	16 16       	cp	r1, r22
  102:	17 06       	cpc	r1, r23
  104:	6c f4       	brge	.+26     	; 0x120 <BlinkLed+0x2e>
@@ -209,27 +186,15 @@ void BlinkLed(int speed, int amount)
  108:	7c 01       	movw	r14, r24
  10a:	c0 e0       	ldi	r28, 0x00	; 0
  10c:	d0 e0       	ldi	r29, 0x00	; 0
-		TOGGLE_BIT(PORTD, 7);
  10e:	92 b3       	in	r25, 0x12	; 18
  110:	90 58       	subi	r25, 0x80	; 128
  112:	92 bb       	out	0x12, r25	; 18
-		wait(speed);
  114:	c7 01       	movw	r24, r14
  116:	d0 df       	rcall	.-96     	; 0xb8 <wait>
-
-
-void BlinkLed(int speed, int amount)
-{
-	CLEAR_ALL(PORTD);
-	for(int i = 0; i < amount; i++){
  118:	21 96       	adiw	r28, 0x01	; 1
  11a:	c0 17       	cp	r28, r16
  11c:	d1 07       	cpc	r29, r17
  11e:	b9 f7       	brne	.-18     	; 0x10e <BlinkLed+0x1c>
-		TOGGLE_BIT(PORTD, 7);
-		wait(speed);
-	}
-}
  120:	df 91       	pop	r29
  122:	cf 91       	pop	r28
  124:	1f 91       	pop	r17
@@ -239,48 +204,26 @@ void BlinkLed(int speed, int amount)
  12c:	08 95       	ret
 
 0000012e <LedButton>:
-
-// OPGAVE B3
-void LedButton(){			
-	CLEAR_ALL(PORTD);
  12e:	12 ba       	out	0x12, r1	; 18
-	while (CHECK_BIT(PINC,0))
  130:	98 9b       	sbis	0x13, 0	; 19
  132:	08 c0       	rjmp	.+16     	; 0x144 <LedButton+0x16>
-	{
-		TOGGLE_BIT(PORTD, 7);
  134:	82 b3       	in	r24, 0x12	; 18
  136:	80 58       	subi	r24, 0x80	; 128
  138:	82 bb       	out	0x12, r24	; 18
-		wait(500);
  13a:	84 ef       	ldi	r24, 0xF4	; 244
  13c:	91 e0       	ldi	r25, 0x01	; 1
  13e:	bc df       	rcall	.-136    	; 0xb8 <wait>
-}
-
-// OPGAVE B3
-void LedButton(){			
-	CLEAR_ALL(PORTD);
-	while (CHECK_BIT(PINC,0))
  140:	98 99       	sbic	0x13, 0	; 19
  142:	f8 cf       	rjmp	.-16     	; 0x134 <LedButton+0x6>
  144:	08 95       	ret
 
 00000146 <LoopLight>:
-		wait(500);
-	}
-}
-
-// OPGAVE B4
-void LoopLight(){
  146:	0f 93       	push	r16
  148:	1f 93       	push	r17
  14a:	cf 93       	push	r28
  14c:	df 93       	push	r29
-	for(int i = 0; i < 8; i ++){
  14e:	c0 e0       	ldi	r28, 0x00	; 0
  150:	d0 e0       	ldi	r29, 0x00	; 0
-		SET_ONLY_BIT(PORTD, i);
  152:	01 e0       	ldi	r16, 0x01	; 1
  154:	10 e0       	ldi	r17, 0x00	; 0
  156:	c8 01       	movw	r24, r16
@@ -291,27 +234,15 @@ void LoopLight(){
  160:	0a 94       	dec	r0
  162:	e2 f7       	brpl	.-8      	; 0x15c <LoopLight+0x16>
  164:	82 bb       	out	0x12, r24	; 18
-		wait(50);
- 166:	82 e3       	ldi	r24, 0x32	; 50
+ 166:	84 e6       	ldi	r24, 0x64	; 100
  168:	90 e0       	ldi	r25, 0x00	; 0
  16a:	a6 df       	rcall	.-180    	; 0xb8 <wait>
-	}
-}
-
-// OPGAVE B4
-void LoopLight(){
-	for(int i = 0; i < 8; i ++){
  16c:	21 96       	adiw	r28, 0x01	; 1
  16e:	c8 30       	cpi	r28, 0x08	; 8
  170:	d1 05       	cpc	r29, r1
  172:	89 f7       	brne	.-30     	; 0x156 <LoopLight+0x10>
  174:	c7 e0       	ldi	r28, 0x07	; 7
  176:	d0 e0       	ldi	r29, 0x00	; 0
-		SET_ONLY_BIT(PORTD, i);
-		wait(50);
-	}
-	for(int i = 7; i > 0; i--){
-		SET_ONLY_BIT(PORTD, i);
  178:	01 e0       	ldi	r16, 0x01	; 1
  17a:	10 e0       	ldi	r17, 0x00	; 0
  17c:	c8 01       	movw	r24, r16
@@ -322,22 +253,11 @@ void LoopLight(){
  186:	0a 94       	dec	r0
  188:	e2 f7       	brpl	.-8      	; 0x182 <LoopLight+0x3c>
  18a:	82 bb       	out	0x12, r24	; 18
-		wait(50);
- 18c:	82 e3       	ldi	r24, 0x32	; 50
+ 18c:	84 e6       	ldi	r24, 0x64	; 100
  18e:	90 e0       	ldi	r25, 0x00	; 0
  190:	93 df       	rcall	.-218    	; 0xb8 <wait>
-void LoopLight(){
-	for(int i = 0; i < 8; i ++){
-		SET_ONLY_BIT(PORTD, i);
-		wait(50);
-	}
-	for(int i = 7; i > 0; i--){
  192:	21 97       	sbiw	r28, 0x01	; 1
  194:	99 f7       	brne	.-26     	; 0x17c <LoopLight+0x36>
-		SET_ONLY_BIT(PORTD, i);
-		wait(50);
-	}
-}
  196:	df 91       	pop	r29
  198:	cf 91       	pop	r28
  19a:	1f 91       	pop	r17
@@ -345,9 +265,6 @@ void LoopLight(){
  19e:	08 95       	ret
 
 000001a0 <States>:
-
-// OPGAVE B6
-int States(int state){
  1a0:	0f 93       	push	r16
  1a2:	1f 93       	push	r17
  1a4:	cf 93       	push	r28
@@ -358,7 +275,6 @@ int States(int state){
  1ae:	cd b7       	in	r28, 0x3d	; 61
  1b0:	de b7       	in	r29, 0x3e	; 62
  1b2:	8c 01       	movw	r16, r24
-	int speeds[] = {1000,500,250};
  1b4:	86 e0       	ldi	r24, 0x06	; 6
  1b6:	e0 e0       	ldi	r30, 0x00	; 0
  1b8:	f1 e0       	ldi	r31, 0x01	; 1
@@ -368,25 +284,15 @@ int States(int state){
  1c0:	0d 92       	st	X+, r0
  1c2:	8a 95       	dec	r24
  1c4:	e1 f7       	brne	.-8      	; 0x1be <States+0x1e>
-	int maxstate = 3;
-
-	if (CHECK_BIT(PINC,0))
  1c6:	98 9b       	sbis	0x13, 0	; 19
  1c8:	07 c0       	rjmp	.+14     	; 0x1d8 <States+0x38>
-	{
-		state += 1;
  1ca:	0f 5f       	subi	r16, 0xFF	; 255
  1cc:	1f 4f       	sbci	r17, 0xFF	; 255
-		if(state > maxstate){
  1ce:	04 30       	cpi	r16, 0x04	; 4
  1d0:	11 05       	cpc	r17, r1
  1d2:	14 f0       	brlt	.+4      	; 0x1d8 <States+0x38>
-			state = 0;
  1d4:	00 e0       	ldi	r16, 0x00	; 0
  1d6:	10 e0       	ldi	r17, 0x00	; 0
-		}
-	}
-	BlinkLed(speeds[state],3);
  1d8:	f8 01       	movw	r30, r16
  1da:	ee 0f       	add	r30, r30
  1dc:	ff 1f       	adc	r31, r31
@@ -397,8 +303,6 @@ int States(int state){
  1e6:	81 81       	ldd	r24, Z+1	; 0x01
  1e8:	92 81       	ldd	r25, Z+2	; 0x02
  1ea:	83 df       	rcall	.-250    	; 0xf2 <BlinkLed>
-	return state;
-}
  1ec:	c8 01       	movw	r24, r16
  1ee:	26 96       	adiw	r28, 0x06	; 6
  1f0:	0f b6       	in	r0, 0x3f	; 63
@@ -413,9 +317,6 @@ int States(int state){
  202:	08 95       	ret
 
 00000204 <Pattern>:
-
-// OPGAVE B5
-void Pattern(){
  204:	8f 92       	push	r8
  206:	9f 92       	push	r9
  208:	af 92       	push	r10
@@ -437,7 +338,6 @@ void Pattern(){
  228:	de bf       	out	0x3e, r29	; 62
  22a:	0f be       	out	0x3f, r0	; 63
  22c:	cd bf       	out	0x3d, r28	; 61
-	int array[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b01111111,0b00111111,0b00011111,0b00001111,0b00000111,0b00000011,0b00000001,0b00000000};
  22e:	80 e2       	ldi	r24, 0x20	; 32
  230:	e6 e0       	ldi	r30, 0x06	; 6
  232:	f1 e0       	ldi	r31, 0x01	; 1
@@ -447,7 +347,6 @@ void Pattern(){
  23a:	0d 92       	st	X+, r0
  23c:	8a 95       	dec	r24
  23e:	e1 f7       	brne	.-8      	; 0x238 <Pattern+0x34>
-	int array2[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b11111110,0b11111100,0b11111000,0b11110000,0b11100000,0b11000000,0b10000000,0b00000000};
  240:	80 e2       	ldi	r24, 0x20	; 32
  242:	e6 e2       	ldi	r30, 0x26	; 38
  244:	f1 e0       	ldi	r31, 0x01	; 1
@@ -457,7 +356,6 @@ void Pattern(){
  24c:	0d 92       	st	X+, r0
  24e:	8a 95       	dec	r24
  250:	e1 f7       	brne	.-8      	; 0x24a <Pattern+0x46>
-	int array3[] = {0b00011000,0b00111100,0b01111110,0b11111111,0b11100111,0b11000011,0b10000001,0b00000000,0b10000001,0b11000011,0b11100111,0b11111111,0b01111110,0b00111100,0b00011000,0b00000000};
  252:	80 e2       	ldi	r24, 0x20	; 32
  254:	e6 e4       	ldi	r30, 0x46	; 70
  256:	f1 e0       	ldi	r31, 0x01	; 1
@@ -480,36 +378,22 @@ void Pattern(){
  278:	c9 0e       	add	r12, r25
  27a:	d1 1c       	adc	r13, r1
  27c:	47 01       	movw	r8, r14
-
-	for (int i = 0; i < sizeof(array)/sizeof(array[0]);i++)
-	{
-		PORTD = array[i];
-		PORTB = array2[i];
-		PORTF = array3[i];
  27e:	0f 2e       	mov	r0, r31
  280:	f2 e6       	ldi	r31, 0x62	; 98
  282:	af 2e       	mov	r10, r31
  284:	b1 2c       	mov	r11, r1
  286:	f0 2d       	mov	r31, r0
-	int array2[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b11111110,0b11111100,0b11111000,0b11110000,0b11100000,0b11000000,0b10000000,0b00000000};
-	int array3[] = {0b00011000,0b00111100,0b01111110,0b11111111,0b11100111,0b11000011,0b10000001,0b00000000,0b10000001,0b11000011,0b11100111,0b11111111,0b01111110,0b00111100,0b00011000,0b00000000};
-
-	for (int i = 0; i < sizeof(array)/sizeof(array[0]);i++)
-	{
-		PORTD = array[i];
  288:	f8 01       	movw	r30, r16
  28a:	80 81       	ld	r24, Z
  28c:	0e 5f       	subi	r16, 0xFE	; 254
  28e:	1f 4f       	sbci	r17, 0xFF	; 255
  290:	82 bb       	out	0x12, r24	; 18
-		PORTB = array2[i];
  292:	f7 01       	movw	r30, r14
  294:	80 81       	ld	r24, Z
  296:	f2 e0       	ldi	r31, 0x02	; 2
  298:	ef 0e       	add	r14, r31
  29a:	f1 1c       	adc	r15, r1
  29c:	88 bb       	out	0x18, r24	; 24
-		PORTF = array3[i];
  29e:	f6 01       	movw	r30, r12
  2a0:	80 81       	ld	r24, Z
  2a2:	f2 e0       	ldi	r31, 0x02	; 2
@@ -517,25 +401,12 @@ void Pattern(){
  2a6:	d1 1c       	adc	r13, r1
  2a8:	f5 01       	movw	r30, r10
  2aa:	80 83       	st	Z, r24
-		wait(50);
- 2ac:	82 e3       	ldi	r24, 0x32	; 50
+ 2ac:	84 e6       	ldi	r24, 0x64	; 100
  2ae:	90 e0       	ldi	r25, 0x00	; 0
  2b0:	03 df       	rcall	.-506    	; 0xb8 <wait>
-void Pattern(){
-	int array[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b01111111,0b00111111,0b00011111,0b00001111,0b00000111,0b00000011,0b00000001,0b00000000};
-	int array2[] = {0b00000001,0b00000011,0b00000111,0b00001111,0b00011111,0b00111111,0b01111111,0b11111111,0b11111110,0b11111100,0b11111000,0b11110000,0b11100000,0b11000000,0b10000000,0b00000000};
-	int array3[] = {0b00011000,0b00111100,0b01111110,0b11111111,0b11100111,0b11000011,0b10000001,0b00000000,0b10000001,0b11000011,0b11100111,0b11111111,0b01111110,0b00111100,0b00011000,0b00000000};
-
-	for (int i = 0; i < sizeof(array)/sizeof(array[0]);i++)
  2b2:	08 15       	cp	r16, r8
  2b4:	19 05       	cpc	r17, r9
  2b6:	41 f7       	brne	.-48     	; 0x288 <Pattern+0x84>
-		PORTD = array[i];
-		PORTB = array2[i];
-		PORTF = array3[i];
-		wait(50);
-	}
-}
  2b8:	c0 5a       	subi	r28, 0xA0	; 160
  2ba:	df 4f       	sbci	r29, 0xFF	; 255
  2bc:	0f b6       	in	r0, 0x3f	; 63
@@ -557,295 +428,79 @@ void Pattern(){
  2dc:	8f 90       	pop	r8
  2de:	08 95       	ret
 
-000002e0 <ChangePortValue>:
-
-
-void ChangePortValue(int port, int bitchange){
-	switch(port){
- 2e0:	82 30       	cpi	r24, 0x02	; 2
- 2e2:	91 05       	cpc	r25, r1
- 2e4:	81 f0       	breq	.+32     	; 0x306 <ChangePortValue+0x26>
- 2e6:	2c f4       	brge	.+10     	; 0x2f2 <ChangePortValue+0x12>
- 2e8:	00 97       	sbiw	r24, 0x00	; 0
- 2ea:	49 f0       	breq	.+18     	; 0x2fe <ChangePortValue+0x1e>
- 2ec:	01 97       	sbiw	r24, 0x01	; 1
- 2ee:	49 f0       	breq	.+18     	; 0x302 <ChangePortValue+0x22>
- 2f0:	08 95       	ret
- 2f2:	83 30       	cpi	r24, 0x03	; 3
- 2f4:	91 05       	cpc	r25, r1
- 2f6:	49 f0       	breq	.+18     	; 0x30a <ChangePortValue+0x2a>
- 2f8:	04 97       	sbiw	r24, 0x04	; 4
- 2fa:	49 f0       	breq	.+18     	; 0x30e <ChangePortValue+0x2e>
- 2fc:	08 95       	ret
-		case 0:	PORTA = bitchange;
- 2fe:	6b bb       	out	0x1b, r22	; 27
-		break;
- 300:	08 95       	ret
-		case 1:	PORTB = bitchange;
- 302:	68 bb       	out	0x18, r22	; 24
-		break;
- 304:	08 95       	ret
-		case 2:	PORTD = bitchange;
- 306:	62 bb       	out	0x12, r22	; 18
-		break;
- 308:	08 95       	ret
-		case 3:	PORTE = bitchange;
- 30a:	63 b9       	out	0x03, r22	; 3
-		break;
- 30c:	08 95       	ret
-		case 4:	PORTF = bitchange;
- 30e:	60 93 62 00 	sts	0x0062, r22	; 0x800062 <__TEXT_REGION_LENGTH__+0x7e0062>
- 312:	08 95       	ret
-
-00000314 <FullLoop>:
-		break;
-	}
-}
-
-
-void FullLoop(){
- 314:	cf 92       	push	r12
- 316:	df 92       	push	r13
- 318:	ef 92       	push	r14
- 31a:	ff 92       	push	r15
- 31c:	0f 93       	push	r16
- 31e:	1f 93       	push	r17
- 320:	cf 93       	push	r28
- 322:	df 93       	push	r29
-	int amountofstrips = 5;
-	int amountofleds = 8;
-	for(int i = 0; i < amountofstrips*amountofleds; i++ ){
- 324:	c0 e0       	ldi	r28, 0x00	; 0
- 326:	d0 e0       	ldi	r29, 0x00	; 0
-		int bitchange = 1 << (i%8);
- 328:	ee 24       	eor	r14, r14
- 32a:	e3 94       	inc	r14
- 32c:	f1 2c       	mov	r15, r1
- 32e:	ce 01       	movw	r24, r28
- 330:	87 70       	andi	r24, 0x07	; 7
- 332:	90 78       	andi	r25, 0x80	; 128
- 334:	99 23       	and	r25, r25
- 336:	24 f4       	brge	.+8      	; 0x340 <FullLoop+0x2c>
- 338:	01 97       	sbiw	r24, 0x01	; 1
- 33a:	88 6f       	ori	r24, 0xF8	; 248
- 33c:	9f 6f       	ori	r25, 0xFF	; 255
- 33e:	01 96       	adiw	r24, 0x01	; 1
- 340:	9c 01       	movw	r18, r24
- 342:	67 01       	movw	r12, r14
- 344:	02 c0       	rjmp	.+4      	; 0x34a <FullLoop+0x36>
- 346:	cc 0c       	add	r12, r12
- 348:	dd 1c       	adc	r13, r13
- 34a:	8a 95       	dec	r24
- 34c:	e2 f7       	brpl	.-8      	; 0x346 <FullLoop+0x32>
-		int strip = i/amountofleds;
- 34e:	8e 01       	movw	r16, r28
- 350:	dd 23       	and	r29, r29
- 352:	14 f4       	brge	.+4      	; 0x358 <FullLoop+0x44>
- 354:	09 5f       	subi	r16, 0xF9	; 249
- 356:	1f 4f       	sbci	r17, 0xFF	; 255
- 358:	15 95       	asr	r17
- 35a:	07 95       	ror	r16
- 35c:	15 95       	asr	r17
- 35e:	07 95       	ror	r16
- 360:	15 95       	asr	r17
- 362:	07 95       	ror	r16
-		if(i%amountofleds == 0){
- 364:	23 2b       	or	r18, r19
- 366:	29 f4       	brne	.+10     	; 0x372 <FullLoop+0x5e>
-			ChangePortValue(strip-1,0);
- 368:	60 e0       	ldi	r22, 0x00	; 0
- 36a:	70 e0       	ldi	r23, 0x00	; 0
- 36c:	c8 01       	movw	r24, r16
- 36e:	01 97       	sbiw	r24, 0x01	; 1
- 370:	b7 df       	rcall	.-146    	; 0x2e0 <ChangePortValue>
-		}
-		
-		ChangePortValue(strip, bitchange);
- 372:	b6 01       	movw	r22, r12
- 374:	c8 01       	movw	r24, r16
- 376:	b4 df       	rcall	.-152    	; 0x2e0 <ChangePortValue>
-		wait(50);
- 378:	82 e3       	ldi	r24, 0x32	; 50
- 37a:	90 e0       	ldi	r25, 0x00	; 0
- 37c:	9d de       	rcall	.-710    	; 0xb8 <wait>
-		ChangePortValue(strip,0);
- 37e:	60 e0       	ldi	r22, 0x00	; 0
- 380:	70 e0       	ldi	r23, 0x00	; 0
- 382:	c8 01       	movw	r24, r16
- 384:	ad df       	rcall	.-166    	; 0x2e0 <ChangePortValue>
-
-
-void FullLoop(){
-	int amountofstrips = 5;
-	int amountofleds = 8;
-	for(int i = 0; i < amountofstrips*amountofleds; i++ ){
- 386:	21 96       	adiw	r28, 0x01	; 1
- 388:	c8 32       	cpi	r28, 0x28	; 40
- 38a:	d1 05       	cpc	r29, r1
- 38c:	81 f6       	brne	.-96     	; 0x32e <FullLoop+0x1a>
- 38e:	c8 e2       	ldi	r28, 0x28	; 40
- 390:	d0 e0       	ldi	r29, 0x00	; 0
-		ChangePortValue(strip, bitchange);
-		wait(50);
-		ChangePortValue(strip,0);
-	}
-	for(int i = amountofstrips*amountofleds; i > 1; i--){
-		int bitchange = 1 << (i%8);
- 392:	ee 24       	eor	r14, r14
- 394:	e3 94       	inc	r14
- 396:	f1 2c       	mov	r15, r1
- 398:	ce 01       	movw	r24, r28
- 39a:	87 70       	andi	r24, 0x07	; 7
- 39c:	90 78       	andi	r25, 0x80	; 128
- 39e:	99 23       	and	r25, r25
- 3a0:	24 f4       	brge	.+8      	; 0x3aa <FullLoop+0x96>
- 3a2:	01 97       	sbiw	r24, 0x01	; 1
- 3a4:	88 6f       	ori	r24, 0xF8	; 248
- 3a6:	9f 6f       	ori	r25, 0xFF	; 255
- 3a8:	01 96       	adiw	r24, 0x01	; 1
- 3aa:	9c 01       	movw	r18, r24
- 3ac:	67 01       	movw	r12, r14
- 3ae:	02 c0       	rjmp	.+4      	; 0x3b4 <FullLoop+0xa0>
- 3b0:	cc 0c       	add	r12, r12
- 3b2:	dd 1c       	adc	r13, r13
- 3b4:	8a 95       	dec	r24
- 3b6:	e2 f7       	brpl	.-8      	; 0x3b0 <FullLoop+0x9c>
-		int strip = i/amountofleds;
- 3b8:	8e 01       	movw	r16, r28
- 3ba:	dd 23       	and	r29, r29
- 3bc:	14 f4       	brge	.+4      	; 0x3c2 <FullLoop+0xae>
- 3be:	09 5f       	subi	r16, 0xF9	; 249
- 3c0:	1f 4f       	sbci	r17, 0xFF	; 255
- 3c2:	15 95       	asr	r17
- 3c4:	07 95       	ror	r16
- 3c6:	15 95       	asr	r17
- 3c8:	07 95       	ror	r16
- 3ca:	15 95       	asr	r17
- 3cc:	07 95       	ror	r16
-		if(i%amountofleds == 0){
- 3ce:	23 2b       	or	r18, r19
- 3d0:	29 f4       	brne	.+10     	; 0x3dc <FullLoop+0xc8>
-			ChangePortValue(strip-1,0);
- 3d2:	60 e0       	ldi	r22, 0x00	; 0
- 3d4:	70 e0       	ldi	r23, 0x00	; 0
- 3d6:	c8 01       	movw	r24, r16
- 3d8:	01 97       	sbiw	r24, 0x01	; 1
- 3da:	82 df       	rcall	.-252    	; 0x2e0 <ChangePortValue>
-		}
-		
-		ChangePortValue(strip, bitchange);
- 3dc:	b6 01       	movw	r22, r12
- 3de:	c8 01       	movw	r24, r16
- 3e0:	7f df       	rcall	.-258    	; 0x2e0 <ChangePortValue>
-		wait(50);
- 3e2:	82 e3       	ldi	r24, 0x32	; 50
- 3e4:	90 e0       	ldi	r25, 0x00	; 0
- 3e6:	68 de       	rcall	.-816    	; 0xb8 <wait>
-		ChangePortValue(strip,0);
- 3e8:	60 e0       	ldi	r22, 0x00	; 0
- 3ea:	70 e0       	ldi	r23, 0x00	; 0
- 3ec:	c8 01       	movw	r24, r16
- 3ee:	78 df       	rcall	.-272    	; 0x2e0 <ChangePortValue>
-		
-		ChangePortValue(strip, bitchange);
-		wait(50);
-		ChangePortValue(strip,0);
-	}
-	for(int i = amountofstrips*amountofleds; i > 1; i--){
- 3f0:	21 97       	sbiw	r28, 0x01	; 1
- 3f2:	c1 30       	cpi	r28, 0x01	; 1
- 3f4:	d1 05       	cpc	r29, r1
- 3f6:	81 f6       	brne	.-96     	; 0x398 <FullLoop+0x84>
-		
-		ChangePortValue(strip, bitchange);
-		wait(50);
-		ChangePortValue(strip,0);
-	}
-}
- 3f8:	df 91       	pop	r29
- 3fa:	cf 91       	pop	r28
- 3fc:	1f 91       	pop	r17
- 3fe:	0f 91       	pop	r16
- 400:	ff 90       	pop	r15
- 402:	ef 90       	pop	r14
- 404:	df 90       	pop	r13
- 406:	cf 90       	pop	r12
- 408:	08 95       	ret
-
-0000040a <Testweek1>:
+000002e0 <Testweek1>:
 
 
 void Testweek1(){
 	//	D,A,B,E,F AS OUTPUT	
 	//  C AS INPUT
 	DDRA = 0b11111111; 
- 40a:	8f ef       	ldi	r24, 0xFF	; 255
- 40c:	8a bb       	out	0x1a, r24	; 26
+ 2e0:	8f ef       	ldi	r24, 0xFF	; 255
+ 2e2:	8a bb       	out	0x1a, r24	; 26
 	DDRB = 0b11111111; 
- 40e:	87 bb       	out	0x17, r24	; 23
+ 2e4:	87 bb       	out	0x17, r24	; 23
 	DDRC = 0b10000000;
- 410:	90 e8       	ldi	r25, 0x80	; 128
- 412:	94 bb       	out	0x14, r25	; 20
+ 2e6:	90 e8       	ldi	r25, 0x80	; 128
+ 2e8:	94 bb       	out	0x14, r25	; 20
 	DDRD = 0b11111111; 
- 414:	81 bb       	out	0x11, r24	; 17
+ 2ea:	81 bb       	out	0x11, r24	; 17
 	DDRE = 0b11111111; 
- 416:	82 b9       	out	0x02, r24	; 2
+ 2ec:	82 b9       	out	0x02, r24	; 2
 	DDRF = 0b11111111;
- 418:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <__TEXT_REGION_LENGTH__+0x7e0061>
+ 2ee:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <__TEXT_REGION_LENGTH__+0x7e0061>
 	
 	
 	
 	int state = 0;
- 41c:	c0 e0       	ldi	r28, 0x00	; 0
- 41e:	d0 e0       	ldi	r29, 0x00	; 0
+ 2f2:	c0 e0       	ldi	r28, 0x00	; 0
+ 2f4:	d0 e0       	ldi	r29, 0x00	; 0
 	while(1){
 		BlinkLedsSeperately();
- 420:	5c de       	rcall	.-840    	; 0xda <BlinkLedsSeperately>
+ 2f6:	f1 de       	rcall	.-542    	; 0xda <BlinkLedsSeperately>
 		LedButton();
- 422:	85 de       	rcall	.-758    	; 0x12e <LedButton>
+ 2f8:	1a df       	rcall	.-460    	; 0x12e <LedButton>
 		LoopLight();
- 424:	90 de       	rcall	.-736    	; 0x146 <LoopLight>
+ 2fa:	25 df       	rcall	.-438    	; 0x146 <LoopLight>
 		state = States(state);
- 426:	ce 01       	movw	r24, r28
- 428:	bb de       	rcall	.-650    	; 0x1a0 <States>
- 42a:	ec 01       	movw	r28, r24
+ 2fc:	ce 01       	movw	r24, r28
+ 2fe:	50 df       	rcall	.-352    	; 0x1a0 <States>
+ 300:	ec 01       	movw	r28, r24
 		Pattern();
- 42c:	eb de       	rcall	.-554    	; 0x204 <Pattern>
-		FullLoop();
- 42e:	72 df       	rcall	.-284    	; 0x314 <FullLoop>
+ 302:	80 df       	rcall	.-256    	; 0x204 <Pattern>
+		//FullLoop();
 	}
- 430:	f7 cf       	rjmp	.-18     	; 0x420 <Testweek1+0x16>
+ 304:	f8 cf       	rjmp	.-16     	; 0x2f6 <Testweek1+0x16>
 
-00000432 <board_init>:
+00000306 <board_init>:
 #include <asf.h>
 #include <board.h>
 #include <conf_board.h>
 
 void board_init(void)
 {
- 432:	08 95       	ret
+ 306:	08 95       	ret
 
-00000434 <main>:
+00000308 <main>:
 
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
 
 	board_init();
- 434:	fe df       	rcall	.-4      	; 0x432 <board_init>
+ 308:	fe df       	rcall	.-4      	; 0x306 <board_init>
 	
 	
 	
 	while (1)
 	{
 		Testweek1();
- 436:	e9 df       	rcall	.-46     	; 0x40a <Testweek1>
+ 30a:	ea df       	rcall	.-44     	; 0x2e0 <Testweek1>
 		
 	}
- 438:	fe cf       	rjmp	.-4      	; 0x436 <main+0x2>
+ 30c:	fe cf       	rjmp	.-4      	; 0x30a <main+0x2>
 
-0000043a <_exit>:
- 43a:	f8 94       	cli
+0000030e <_exit>:
+ 30e:	f8 94       	cli
 
-0000043c <__stop_program>:
- 43c:	ff cf       	rjmp	.-2      	; 0x43c <__stop_program>
+00000310 <__stop_program>:
+ 310:	ff cf       	rjmp	.-2      	; 0x310 <__stop_program>

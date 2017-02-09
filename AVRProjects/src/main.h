@@ -10,6 +10,7 @@
 #define MAIN_H_
 
 #include "Week1/Headers/week1.h"
+#include "Week1/Headers/week2.h"
 
 
 
