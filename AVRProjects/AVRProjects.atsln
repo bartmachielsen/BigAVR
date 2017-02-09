@@ -7,7 +7,7 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "AVRPRojects", "AVRPRojects.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F3C6A0D-3124-47B2-B395-282BECA3DC29}"
 	ProjectSection(SolutionItems) = preProject
-		week2.h = week2.h
+		src\Week1\Headers\week2.h = src\Week1\Headers\week2.h
 	EndProjectSection
 EndProject
 Global

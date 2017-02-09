@@ -7,6 +7,10 @@
 
  #include "Week1/Headers/week2.h"
 
+ void OpdrachtB3(){
+
+ }
+
  void Testweek2(){
 	while(1){
 
