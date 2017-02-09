@@ -6,3 +6,9 @@
  */ 
 
  #include "Week1/Headers/week2.h"
+
+ void Testweek2(){
+	while(1){
+
+	}
+ }
