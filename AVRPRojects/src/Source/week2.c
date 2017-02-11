@@ -60,6 +60,17 @@
 
  int looplightindex = 0;
   
+  /*
+		1
+	6		2
+		7
+	3		5
+		4
+  */
+
+
+
+
  void SevenSegment(int Display){
 	if (Display>16)
 	{
