@@ -10,6 +10,7 @@
 #define DISPLAY_H_
 
 void init_lcd(void);
+void lcd_setcursor(int position);
 void lcd_command ( unsigned char dat );
 void lcd_writeChar( unsigned char dat );
 void lcd_writeLine1 ( char text1[] );

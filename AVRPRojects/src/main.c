@@ -40,6 +40,7 @@ int main (void)
 
 	board_init();
 	DDRC = 0xFF;
+	PORTC = 0x00;
 	
 	
 		//Testweek1();

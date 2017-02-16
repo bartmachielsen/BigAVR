@@ -18,6 +18,10 @@
 	 lcd_command( 0x80 );
  }
 
+ void lcd_setcursor(int position){
+
+ }
+
  void lcd_command ( unsigned char dat )
  {
 	 PORTC = dat & 0xF0;

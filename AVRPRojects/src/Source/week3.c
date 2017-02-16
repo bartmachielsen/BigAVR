@@ -6,9 +6,11 @@
  */ 
  #include "../Headers/week3.h"
  #include "../Headers/display.h"
+ #include <util/delay.h>
 
  void Testweek3(){
 	init_lcd();
-	lcd_writeLine1(" ");
-	lcd_writeLine2(" ");
+	_delay_ms(10);
+	lcd_writeLine1("hallo           ");
+	lcd_writeLine2("bart            ");
  }
