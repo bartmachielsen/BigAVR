@@ -39,15 +39,13 @@ int main (void)
 	/* Insert system clock initialization code here (sysclk_init()). */
 
 	board_init();
+	DDRC = 0xFF;
 	
 	
-	
-	while (1)
-	{
 		//Testweek1();
 		//Testweek2();
 		Testweek3();
-	}
+	
 
 	/* Insert application code here, after the board has been initialized. */
 }

@@ -5,7 +5,10 @@
  *  Author: bartm
  */ 
  #include "../Headers/week3.h"
+ #include "../Headers/display.h"
 
  void Testweek3(){
-	
+	init_lcd();
+	lcd_writeLine1(" ");
+	lcd_writeLine2(" ");
  }
