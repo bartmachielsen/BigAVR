@@ -15,7 +15,7 @@ void lcd_command ( unsigned char dat );
 void lcd_writeChar( unsigned char dat );
 void lcd_writeLine1 ( char text1[] );
 void lcd_writeLine2 ( char text2[] );
-
+void lcd_shift( int direction);
 
 
 #endif /* DISPLAY_H_ */
