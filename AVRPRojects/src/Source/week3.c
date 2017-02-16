@@ -13,4 +13,5 @@
 	_delay_ms(10);
 	lcd_writeLine1("hallo           ");
 	lcd_writeLine2("bart            ");
+	lcd_setcursor(16);
  }

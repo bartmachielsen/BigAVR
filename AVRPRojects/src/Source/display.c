@@ -19,7 +19,25 @@
  }
 
  void lcd_setcursor(int position){
-
+	 lcd_command( 0x02 );
+	 lcd_command( 0x0F );
+	if(position<32)
+	if (position<16)
+	{
+		for (int i = 0; i < position; i++)
+		{
+			lcd_command( 0x14 );
+			_delay_ms(1);
+		}
+	} else {
+		lcd_command( 0xC0 );
+		_delay_ms(1);
+		for (int i = 0; i < position-16; i++)
+		{
+			lcd_command( 0x14 );
+			_delay_ms(1);
+		}
+	}
  }
 
  void lcd_command ( unsigned char dat )
