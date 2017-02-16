@@ -61,3 +61,13 @@
 		 lcd_writeChar( text2[i] );
 	 }
  }
+
+  void lcd_shift(int direction){ 
+	  _delay_ms(10);
+	  if(direction == 0){
+		lcd_command(0x1C);
+	  }else if(direction == 1){
+		lcd_command(0x18);
+	  }
+	  _delay_ms(10);
+  }

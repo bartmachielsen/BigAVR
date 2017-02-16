@@ -9,6 +9,7 @@
 #ifndef WEEK3_H_
 #define WEEK3_H_
 
+void ShiftText();
 void Testweek3();
 
 
