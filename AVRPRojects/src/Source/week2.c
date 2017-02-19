@@ -98,11 +98,11 @@
 
 
   void OpdrachtB2(){
-	  DDRD = 0xFF;
-	  DDRC = 0xFF;
-	  EICRA |= 0b00001010;
-	  EIMSK |= 0b00000011;
-	  sei();
+	 DDRD = 0xFF;
+	 DDRC = 0xFF;
+	 EICRA |= 0b00001010;
+	 EIMSK |= 0b00000011;
+	 sei();
   }
 
 
