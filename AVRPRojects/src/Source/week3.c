@@ -16,6 +16,7 @@
  #define CLEAR_ALL(var) var = 0x00
  #define MAX_OVERFLOW 2
  #define REMAINDER_TIMER 31250
+ int ms = 0;
 
  void ShiftText(){
 	 while(1){
@@ -54,15 +55,15 @@
 
   int overflow_count = 0;
 
-  ISR ( TIMER1_OVF_vect )
+  ISR( TIMER2_COMP_vect )
   {
-	  TCNT1 = REMAINDER_TIMER; // Reload timer with precalculated value
-	  overflow_count += 1;
-	  if(overflow_count >= MAX_OVERFLOW){
-		  overflow_count = 0;
-		  PORTC ^= (1 << 0) ; // Toggle the LED
-	  }
-  }
+	  ms++; // Increment ms counter
+	  if ( ms == 500 )
+	  {
+		  PORTC ^= (1<<0);; // Toggle bit 0 van PORTC
+		  ms = 0; // Reset ms_count value
+	  } 
+   }
 
  void init_counter(){
 	 DDRD = 0b000000000;
