@@ -102,8 +102,8 @@
  	//lcd_writeLine2("Diederich         ");
 
 	//ShowPushCount();
-	//init_timer();
-	init_counter();
+	init_timer();
+	//init_counter();
 
  	//lcd_setcursor(16);
  	//ShiftText();
