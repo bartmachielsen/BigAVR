@@ -63,6 +63,34 @@
 		  PORTC ^= (1 << 0) ; // Toggle the LED
 	  }
   }
+  int tenthValue = 0;
+  ISR( TIMER2_OVF_vect )
+  {
+	  tenthValue++; 
+	  char text[20];
+	  sprintf(text, "%i         ", tenthValue);
+	  lcd_writeLine1(text + tenthValue);
+	  wait(500);
+// 	  char text[8];
+// 	  lcd_writeLine1("one time      ");
+// 	  wait(10);
+	  PORTB = tenthValue;
+  }
+ void init_counter(){
+	 DDRD = 0b000000000;
+	 DDRA = 0xFF;
+	 TCNT2 = -10;
+	 DDRB = 0xFF;
+	 OCR2 = 1;
+	 TIMSK |= 0b0000001;
+	 TCCR2 = 0b0011111; 
+	 sei();
+
+	 while(1){
+		 PORTA = TCNT2; // debugging
+	 }
+
+ }
 
   void init_timer()
   {
@@ -80,15 +108,15 @@
  void Testweek3(){
  	init_lcd();
  	_delay_ms(10);
- 	lcd_writeLine1("hallo           ");
- 	lcd_writeLine2("Diederich         ");
+ 	//lcd_writeLine1("hallo           ");
+ 	//lcd_writeLine2("Diederich         ");
 
 	//ShowPushCount();
-	init_timer();
+	//init_timer();
+	init_counter();
 
-
- 	lcd_setcursor(16);
- 	ShiftText();
+ 	//lcd_setcursor(16);
+ 	//ShiftText();
 
 
 
