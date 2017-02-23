@@ -62,7 +62,7 @@
 		 char text[20];
 		 sprintf(text, "number: %i       ", TCNT2);
 		 lcd_writeLine1(text);
-		 wait(500);
+		 wait(10);
 	 }
 
  }
@@ -78,8 +78,8 @@
 
 
  void Testweek3(){
- 	//init_lcd();
- 	//delay_ms(10);
+ 	init_lcd();
+ 	_delay_ms(10);
  	//lcd_writeLine1("hallo           ");
  	//lcd_writeLine2("Diederich         ");
 
