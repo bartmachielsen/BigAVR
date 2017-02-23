@@ -46,6 +46,9 @@ int main (void)
 		//Testweek1();
 		//Testweek2();
 		Testweek3();
+		while(1){
+			continue;
+		}
 	
 
 	/* Insert application code here, after the board has been initialized. */
