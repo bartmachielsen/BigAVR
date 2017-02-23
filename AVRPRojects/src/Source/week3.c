@@ -63,31 +63,21 @@
 		  PORTC ^= (1 << 0) ; // Toggle the LED
 	  }
   }
-  int tenthValue = 0;
-  ISR( TIMER2_OVF_vect )
-  {
-	  tenthValue++; 
-	  char text[20];
-	  sprintf(text, "%i         ", tenthValue);
-	  lcd_writeLine1(text + tenthValue);
-	  wait(500);
-// 	  char text[8];
-// 	  lcd_writeLine1("one time      ");
-// 	  wait(10);
-	  PORTB = tenthValue;
-  }
+
  void init_counter(){
 	 DDRD = 0b000000000;
 	 DDRA = 0xFF;
-	 TCNT2 = -10;
+	 TCNT2 = 0x00;
 	 DDRB = 0xFF;
 	 OCR2 = 1;
 	 TIMSK |= 0b0000001;
-	 TCCR2 = 0b0011111; 
-	 sei();
-
+	 TCCR2 = 0x07; 
 	 while(1){
 		 PORTA = TCNT2; // debugging
+		 char text[20];
+		 sprintf(text, "number: %i       ", TCNT2);
+		 lcd_writeLine1(text);
+		 wait(500);
 	 }
 
  }
