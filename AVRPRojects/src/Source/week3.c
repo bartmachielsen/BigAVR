@@ -14,9 +14,9 @@
  #define LED PD4
  #define SET_ONLY_BIT(var, pos) var = 1 << pos
  #define CLEAR_ALL(var) var = 0x00
- #define MAX_OVERFLOW 2
- #define REMAINDER_TIMER 31250
- int ms = 0;
+ #define ON_TIME 15
+ #define OFF_TIME 25
+
 
  void ShiftText(){
 	 while(1){
@@ -31,36 +31,20 @@
 	 }
  }
 
-// 
-//  int counter = 0;
-//   ISR(INT0_vect){
-// 		char text[20];
-// 		sprintf(text, "%i           ", counter);
-// 		lcd_setcursor(1);
-// 		lcd_writeLine1(text);
-// 
-// 		
-// 		counter++;
-// 		PORTD = 0x000000000;
-// }
-//  void ShowPushCount(){
-// 	 DDRD = 0xFF;
-// 	 EICRA |= 0b00001010;
-// 	 EIMSK |= 0b00000011;
-// 	 sei();
-//  }
 
 
-
-
-  int overflow_count = 0;
-
+   int state = 0;
+   int ms = 0;
   ISR( TIMER2_COMP_vect )
   {
-	  ms++; // Increment ms counter
-	  if ( ms == 500 )
-	  {
-		  PORTC ^= (1<<0);; // Toggle bit 0 van PORTC
+  
+	  ms += 1; // Increment ms counter
+	  if((state == 0 && ms >= OFF_TIME) || (state == 1 && ms >= ON_TIME)){
+		  PORTC ^= 1<<1; // Toggle bit 0 van PORTC
+		  state +=1;
+		  if(state > 1){
+			state = 0;
+		  }
 		  ms = 0; // Reset ms_count value
 	  } 
    }
@@ -78,22 +62,19 @@
 		 char text[20];
 		 sprintf(text, "number: %i       ", TCNT2);
 		 lcd_writeLine1(text);
-		 wait(500);
+		 wait(10);
 	 }
 
  }
 
   void init_timer()
   {
-	  DDRC |= (1 << 0);
-	  
-	  TIMSK |= (1 << TOIE1 ); // Enable overflow interrupt
-	  sei () ; // Enable global interrupts
-	  
-	  TCNT1 = REMAINDER_TIMER; // Preload timer with precalculated value
-	  
-	  TCCR1B |= ((1 << CS10 ) | (1 << CS11 )) ; // Set up timer at Fcpu /64	//	CS11 --> CS12 bij 1024 preloader
-  }
+	  DDRC = 0xFF;
+	  OCR2 = 125; // Preload timer with precalculated value
+	  TIMSK |= 1 << 7; // Enable overflow interrupt
+	  TCCR2 = 0b00001011;
+	  sei(); 
+	 }
 
 
  void Testweek3(){
