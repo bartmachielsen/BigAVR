@@ -19,8 +19,11 @@
  }
 
  void lcd_setcursor(int position){
+	 // reset/unshift cursor
 	 lcd_command( 0x02 );
 	 lcd_command( 0x0F );
+
+	 // decide in which row the cursor
 	if(position<32)
 	if (position<16)
 	{
@@ -42,10 +45,13 @@
 
  void lcd_command ( unsigned char dat )
  {
+	 //send first half
 	 PORTC = dat & 0xF0;
 	 PORTC = PORTC | 0x08;
 	 _delay_ms(1); 
-	 PORTC = 0x04; 
+	 PORTC = 0x04;
+
+	 //send second half
 	 PORTC = (dat & 0x0F) << 4; 
 	 PORTC = PORTC | 0x08;
 	 _delay_ms(1);
@@ -54,10 +60,13 @@
 
  void lcd_writeChar( unsigned char dat )
  {
+	 //send first half
 	 PORTC = dat & 0xF0;
 	 PORTC = PORTC | 0x0C;
 	 _delay_ms(1);
 	 PORTC = 0x04;
+
+	 //send second half
 	 PORTC = (dat & 0x0F) << 4;
 	 PORTC = PORTC | 0x0C;
 	 _delay_ms(1);
@@ -66,6 +75,7 @@
 
  void lcd_writeLine1 ( char text1[] )
  {
+	//set cursor to 1st position
 	 lcd_command(0x80);
 	 for (int i=0; i<16; i++) {
 		 lcd_writeChar( text1[i] );

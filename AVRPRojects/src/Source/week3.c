@@ -99,11 +99,11 @@
  void Testweek3(){
  	init_lcd();
  	_delay_ms(10);
- 	//lcd_writeLine1("hallo           ");
- 	//lcd_writeLine2("Diederich         ");
+ 	lcd_writeLine1("hallo           ");
+ 	lcd_writeLine2("Diederich         ");
 
 	//ShowPushCount();
-	init_timer();
+	//init_timer();
 	//init_counter();
 
  	//lcd_setcursor(16);
