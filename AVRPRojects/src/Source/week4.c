@@ -6,10 +6,12 @@
  */
   #include "../Headers/week4.h"
   #include "../Headers/week1.h"
+  #include "../Headers/display.h"
 
   #define F_CPU 8000000
   #include <avr/io.h>
   #include <util/delay.h>
+  #include <stdio.h>
   #define BIT(x) ( 1<<x )
   #define DDR_SPI DDRB // spi Data direction register
   #define PORT_SPI PORTB // spi Output register
@@ -18,6 +20,56 @@
   #define SPI_MISO 3 // PB3: spi Pin MISO
   #define SPI_SS 0 // PB0: spi Pin Slave Select
   // wait(): busy waiting for 'ms' millisecond - used library: util/delay.h
+
+
+    void OpgaveB1(){
+	    DDRF = 0x00;				// set PORTF for input (ADC)
+	    DDRA = 0xFF;				// set PORTA for output
+	    DDRB = 0xFF;				// set PORTB for output
+	    ADMUX = 0b01100001;			// AREF=VCC, result left adjusted, channel1 at pin PF1
+	    ADCSRA = 0b11100110;		// ADC-enable, no interrupt, start, free running, division by 64
+	    while(1){
+		    PORTB = ADCL;			// Laat de waarde zien op PORTB
+		    PORTA = ADCH;			// Laat de waarde deels zien op PORTA
+		    wait(100);
+	    }
+
+    }
+    void OpgaveB2(){
+	    DDRF = 0x00;				// set PORTF for input (ADC)
+	    DDRA = 0xFF;				// set PORTA for output
+	    ADMUX = 0b01000011;		// AREF=VCC, not left adjusted, channel3
+	    ADCSRA = 0b10100110;		// ADC-enable, no interrupt, start, free running, division by 64
+	    while(1){
+		    ADCSRA |= 1 << 6;
+		    while ( ADCSRA & 1 << 6 ) ;
+		    PORTA = ADCH;			// Laat de waarde deels zien op PORTA
+		    wait(500);
+	    }
+    }
+
+    void OpgaveB3(){
+	    init_lcd();
+	    _delay_ms(10);
+	    DDRF = 0x00;				// set PORTF for input (ADC)
+	    DDRA = 0xFF;				// set PORTA for output
+	    DDRB = 0xFF;				// set PORTA for output
+	    ADMUX = 0b011000001;		// AREF=VCC, not left adjusted, channel3
+	    ADCSRA = 0b11100110;		// ADC-enable, no interrupt, start, free running, division by 64
+	    while(1){
+		    PORTB = ADCL;			// Laat de  lage 8 bits waarde zien op PORTB
+		    PORTA = ADCH;			// Laat de waarde deels zien op PORTA
+		    char text[16];
+		    char text2[16];
+		    sprintf(text, "ADCH:%i              ",ADCH);
+		    sprintf(text2, "ADCL:%i              ",ADCL);
+		    lcd_writeLine1(text2);
+		    lcd_writeLine2(text);
+		    wait(1000);
+
+	    }
+    }
+
 
   void spi_masterInit(void)
   {
@@ -106,10 +158,10 @@
 	  // write 4-digit data
 	  for (char i =4; i>=1; i--)
 	  {
-		  //spi_slaveSelect(0); // Select display chip
-		  //spi_write(5-i); // digit adress: (digit place)
-		  //spi_write(i); // digit value: i (= digit place)
-		  //spi_slaveDeSelect(0); // Deselect display chip
+		  spi_slaveSelect(0); // Select display chip
+		  spi_write(5-i); // digit adress: (digit place)
+		  spi_write(i); // digit value: i (= digit place)
+		  spi_slaveDeSelect(0); // Deselect display chip
 	  }
 	  wait(1000);
 	  return (1);
