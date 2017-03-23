@@ -8,8 +8,9 @@
 
 #ifndef WEEK4_H_
 #define WEEK4_H_
-
-
+void OpgaveB1(void);
+void OpgaveB2(void);
+void OpgaveB3(void);
 
 void Testweek4();
 

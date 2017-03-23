@@ -43,13 +43,13 @@ int main (void)
 	PORTC = 0x00;
 	
 	
-		//Testweek1();
-		//Testweek2();
-		//Testweek3();
-		Testweek4();
-		while(1){
+	//Testweek1();
+	//Testweek2();
+	//Testweek3();
+	Testweek4();
+	while(1){
 			
-		}
+	}
 	
 
 	/* Insert application code here, after the board has been initialized. */
