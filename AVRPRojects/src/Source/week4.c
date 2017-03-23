@@ -3,7 +3,7 @@
  *
  * Created: 9-3-2017 10:44:46
  *  Author: bartm
- */ 
+ */
   #include "../Headers/week4.h"
   #include "../Headers/week1.h"
 
@@ -115,13 +115,6 @@
 	  return (1);
   }
 
-  void spi_writeWord ( unsigned char adress, unsigned char data )  {
-	  spi_slaveSelect(0); // Select display chip
-	  spi_write(adress); // digit adress: (digit place)
-	  spi_write(data); // digit value: i (= digit place)
-	  spi_slaveDeSelect(0); // Deselect display chip
-  }
-
   void writeled(int adress, int value){
 	  spi_slaveSelect(0); // Select display chip
 	  spi_write(adress); // digit adress: (digit place)
@@ -141,18 +134,27 @@
 				writeled(1,(value%10));
 				writeled(2,(value%100-value%10)/10);
 				writeled(3,(value&1000-value%100)/100);
-				writeled(4,137);
+				writeled(4,10);
 
 			}
 		}
 
 	}
 
+  void spi_writeWord ()  {
+	  writeled(4,12);
+	  writeled(3,11);
+	  writeled(2,13);
+    writeled(1,14);
+  }
+
   void Testweek4(){
   for (;;)
   {
 	  mainled();
 	  writeLedDisplay(-321);
+	  wait(1000);
+    spi_writeWord();
 	  wait(1000);
   }
 	// test
