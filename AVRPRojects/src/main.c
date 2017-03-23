@@ -48,7 +48,7 @@ int main (void)
 		//Testweek3();
 		Testweek4();
 		while(1){
-			continue;
+			
 		}
 	
 
