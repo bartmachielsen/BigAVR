@@ -13,6 +13,7 @@
 #include "Headers/week2.h"
 #include "Headers/week3.h"
 #include "Headers/week4.h"
+#include "Headers/Dotmatrix.h"
 
 
 #endif /* MAIN_H_ */

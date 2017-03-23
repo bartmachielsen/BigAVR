@@ -46,7 +46,8 @@ int main (void)
 	//Testweek1();
 	//Testweek2();
 	//Testweek3();
-	Testweek4();
+	//Testweek4();
+	Dotmatrix();
 	while(1){
 			
 	}
