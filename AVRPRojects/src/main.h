@@ -3,7 +3,7 @@
  *
  * Created: 02/02/2017 11:29:07
  *  Author: maxde
- */ 
+ */
 
 
 #ifndef MAIN_H_
@@ -14,6 +14,7 @@
 #include "Headers/week3.h"
 #include "Headers/week4.h"
 #include "Headers/Dotmatrix.h"
+#include "Headers/Game.h"
 
 
 #endif /* MAIN_H_ */
