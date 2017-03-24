@@ -25,33 +25,55 @@
  * Include header files for all drivers that have been imported from
  * Atmel Software Framework (ASF).
  */
+
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
+#include <math.h>
 #include <asf.h>
 #include "main.h"
 #include <avr/io.h>
 
 
-
-int main (void)
+/* 00000000
+ *        1
+ *       2
+ *      4
+ *     8
+ *    16
+ *   32
+ *  64
+ * 128
+ */
+int main(void)
 {
-	/* Insert system clock initialization code here (sysclk_init()). */
+   /* Insert system clock initialization code here (sysclk_init()). */
 
-	board_init();
-	DDRC = 0xFF;
-	PORTC = 0x00;
-	
-	
-	//Testweek1();
-	//Testweek2();
-	//Testweek3();
-	//Testweek4();
-	Dotmatrix();
-	while(1){
-			
-	}
-	
+   board_init();
+   DDRC  = 0xFF;
+   PORTC = 0x00;
 
-	/* Insert application code here, after the board has been initialized. */
+
+   //Testweek1();
+   //Testweek2();
+   Testweek3();
+   //Testweek4();
+   InitDotmatrix();
+   //clears display
+   for (int i = 0; i < 16; i += 2)
+   {
+      WriteRow(i, 0);
+   }
+	 InitGame();
+   wait(500);
+   while (1)
+   {
+		 Fillmatrix(0);
+		 Worldtick();
+		 SendtoMatrix();
+		 wait(500);
+   }
+
+
+   /* Insert application code here, after the board has been initialized. */
 }

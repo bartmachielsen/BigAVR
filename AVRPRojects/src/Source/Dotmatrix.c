@@ -78,13 +78,22 @@ Version :    	DMK, Initial code
 /******************************************************************/
 
 
+void WriteRow(int row, int value){
+	twi_start();
+	twi_tx(0xE0);	// Display I2C addres + R/W bit
+	twi_tx(row);	// Address
+	twi_tx(value);	// data
+	twi_stop();
+}
+
+
 /******************************************************************/
-int Dotmatrix( void )
+int InitDotmatrix( void )
 /* 
 short:			main() loop, entry point of executable
 inputs:			
 outputs:	
-notes:			Looping forever, trashing the HT16K33
+notes:			Looping forever
 Version :    	DMK, Initial code
 *******************************************************************/
 {
@@ -93,43 +102,24 @@ Version :    	DMK, Initial code
 
 	// Init HT16K22. Page 32 datasheet
 	twi_start();
-	twi_tx(0xE0);	// Display I2C addres + R/W bit
-	twi_tx(0x21);	// Internal osc on (page 10 HT16K33)
+	twi_tx(0xE0);	// Display I2C addres + R/W bit - because of TWI this is the adress of the display
+	twi_tx(0x21);	// Internal osc on (page 10 HT16K33) - Normal operation mode
 	twi_stop();
 
 	twi_start();
-	twi_tx(0xE0);	// Display I2C address + R/W bit
+	twi_tx(0xE0);	// Display I2C addres + R/W bit - because of TWI this is the adress of the display
 	twi_tx(0xA0);	// HT16K33 pins all output
 	twi_stop();
 
 	twi_start();
-	twi_tx(0xE0);	// Display I2C address + R/W bit
-	twi_tx(0xE3);	// Display Dimming 4/16 duty cycle
+	twi_tx(0xE0);	// Display I2C addres + R/W bit - because of TWI this is the adress of the display
+	twi_tx(0xEF);	// Display Dimming 16/16 duty cycle - full brightness
 	twi_stop();
 
 	twi_start();
-	twi_tx(0xE0);	// Display I2C address + R/W bit
-	twi_tx(0x81);	// Display OFF - Blink On
+	twi_tx(0xE0);	// Display I2C addres + R/W bit - because of TWI this is the adress of the display
+	twi_tx(0x81);	// Display ON - Blink ON
 	twi_stop();
-
-	while (1)
-	{
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x01);	// Address
-		twi_tx(0x00);	// data
-		twi_stop();
-
-		wait(500);	
-
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x01);	// Address
-		twi_tx(0x01);	// data
-		twi_stop();	
-
-		wait(500);
-	}
 
 	return 1;
 }
