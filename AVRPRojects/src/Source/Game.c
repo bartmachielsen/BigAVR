@@ -10,7 +10,7 @@
  #define HORIZONTAL_MATRIX_ROWS 8
  #define VERTICAL_MATRIX_ROWS 8
  
- int matrix[HORIZONTAL_MATRIX_ROWS,VERTICAL_MATRIX_ROWS];
+ int matrix[HORIZONTAL_MATRIX_ROWS][VERTICAL_MATRIX_ROWS];
  Object moving_object;
 
  void InitGame(){
