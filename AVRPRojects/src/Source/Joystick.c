@@ -41,6 +41,12 @@
 	return GetDirection(ADCL+ADCH);
  }
 
+ void ShowOnDisplay(int positionx, int positiony){
+	 char text[20];
+	 sprintf(text, "number: %i   %i    ", positionx,positiony);
+	 lcd_writeLine1(text);
+ }
+
 
  void TestJoyStick(){
 	DDRF = 0x00;				// set PORTF for input (ADC)
@@ -49,7 +55,12 @@
 	wait(10);
 	while(1){
 		char text[20];
-		sprintf(text, "number: %i   %i    ", GetPosition(HORIZONTAL), GetPosition(VERTICAL));
+		wait(50);
+		int position1 = GetPosition(VERTICAL);
+		wait(200);
+		int position2 = GetPosition(HORIZONTAL);
+		sprintf(text, "number: %i   %i    ", position1,position2);
+		
 		lcd_writeLine1(text);
 		wait(10);
 	}
