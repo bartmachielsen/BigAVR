@@ -9,15 +9,6 @@
  #include "../Headers/week1.h"
  #include <stdio.h>
  #include <avr/io.h>
- 
- #define BOTTOM -1
- #define CENTER 0
- #define TOP 1
-
- #define JOYSTICK_CENTER 150
- #define JOYSTICK_ALLO_DIFF 25
- #define HORIZONTAL 1
- #define VERTICAL 0
 
 
  int GetDirection(int value){
@@ -31,7 +22,14 @@
 	}
 	return TOP;
  }
-
+ /*!
+ *	Function for getting direction of joystick connected to portF
+ *	Get position of given axis
+ *	1 for horizontal (or use defined HORIZONTAL)
+ *  0 for vertical (or use defined VERTICAL
+ *	WARNING! FUNCTION NEEDS TO WAIT BETWEEN TWO READINGS!
+ * @return a direction (BOTTOM,CENTER,TOP) as integer (-1,0,1)
+ */
  int GetPosition(int way){
 	int address = 0b011000000;
 	if(way == HORIZONTAL){
@@ -40,7 +38,6 @@
 	ADMUX = address;
 	PORTB = address;
 	ADCSRA = 0b11100110;
-	wait(100);
 	return GetDirection(ADCL+ADCH);
  }
 

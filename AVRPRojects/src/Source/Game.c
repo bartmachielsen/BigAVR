@@ -24,9 +24,29 @@
    moving_object.stuck = 0;
 
  }
-
+ /*!
+ * Function for moving objects in matrix (changing position variables)
+ * WARNING! FUNCTION WAITS FOR 250 MS TO MAKE SURE THAT THE READINGS ARE NOT TO FAST
+ */
  void MoveObject(Object object){
-	GetPosition(VERTICAL);
+	wait(50);
+	int vertical_position = GetPosition(VERTICAL);
+	wait(200);
+	int horizontal_position = GetPosition(HORIZONTAL);
+	object.x += horizontal_position;
+	object.y += vertical_position;
+	if(object.x > HORIZONTAL_MATRIX_ROWS-1){
+		object.x = HORIZONTAL_MATRIX_ROWS-1;
+	}
+	if(object.x < 0){
+		object.x = 0;
+	}
+	if(object.y > VERTICAL_MATRIX_ROWS-1){
+		object.y = VERTICAL_MATRIX_ROWS-1;
+	}
+	if(object.y < 0){
+		object.y = 0;
+	}
  }
 
  void Fillmatrix(int checker){
