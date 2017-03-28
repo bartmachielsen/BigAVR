@@ -21,7 +21,10 @@
  Object moving_object;
  int score = 0;
  int highscore = 0;
-
+ /*!
+ *	Init game with default object
+ *	With default size of 4 blocks and start position of x3-y0
+ */
  void InitGame(){
    moving_object.block[0][0] = 1;
    moving_object.block[0][1] = 1;
@@ -36,6 +39,7 @@
  * WARNING! FUNCTION WAITS FOR 250 MS TO MAKE SURE THAT THE READINGS ARE NOT TO FAST
  */
  void MoveObject(Object* object){
+	// reading data from sensors
 	wait(50);
 	int vertical_position = -GetPosition(VERTICAL);
 	wait(200);
@@ -46,14 +50,15 @@
 	if(vertical_position != 1){
 		object->y += vertical_position;
 	}
+	// check if object not going out of bound horizontal
 	if(collision(*object) || object->x < 0 || object->x >= HORIZONTAL_MATRIX_ROWS-1 || object->y < 0 || object->y >= VERTICAL_MATRIX_ROWS){
 		object->x -= horizontal_position;
-
-		
 	}
-
  }
-
+ /*!
+ * Function for moving all rows to their bottom row
+ * Called when a row is finished, this row is start (6=bottom) and then replaced with the upper rows
+ */
  void MoveAll(int start){
 	for(int row = start-1; row >= 0; row--){
 		for(int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++){
@@ -61,7 +66,10 @@
 		}
 	}
  }
-
+ /*!
+ * Function for showing score and highscore to lcddisplay!
+ *
+ */
  void Showscore(){
 	char text[16];
 	char text2[16];
@@ -70,7 +78,11 @@
 	lcd_writeLine1(text);
 	lcd_writeLine2(text2);
  }
-
+ /*!
+ *	Function for checking if the rows are finished and replacing those rows with their upper rows
+ *	Adds score when a row is complete (fully filled)
+ *
+ */
  void CheckRowsFinished(){
 	for(int row = VERTICAL_MATRIX_ROWS-1; row >= 0; row--){
 		int complete = 1;
@@ -79,11 +91,11 @@
 				complete = -1;
 			}
 		}
-		
+		// row is full
 		if(complete == 1){
-			MoveAll(row);
-			score += ROW_SCORE;
-			CheckRowsFinished();
+			MoveAll(row); // move all rows 
+			score += ROW_SCORE; // add score
+			CheckRowsFinished();	//	start again from beginning
 			break;
 		}
 	}
