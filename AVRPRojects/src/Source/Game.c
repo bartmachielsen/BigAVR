@@ -7,6 +7,9 @@
 
  #include "Headers/Game.h"
  #include "Headers/Dotmatrix.h"
+ #include <time.h>
+ #include <stdlib.h>
+
 
  int matrix[8][8];
  Object objects[20];
@@ -28,6 +31,11 @@
    object2.x = 3;
    object2.y = -1;
    object2.stuck = 0;
+ }
+
+ void RandomBlock(){
+	  srand(time(NULL));   // should only be called once
+	  int r = rand();
  }
 
  void Fillmatrix(int checker){
