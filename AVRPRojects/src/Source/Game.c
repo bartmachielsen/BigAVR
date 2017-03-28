@@ -139,6 +139,11 @@ int collision(Object o1){
 		matrix[moving_object.x+1][moving_object.y+1] = moving_object.block[1][1];
 
 		InitGame();
+		
+		if (collision(moving_object)==1)
+		{
+			Fillmatrix(0);
+		}
 	}
 
  }
