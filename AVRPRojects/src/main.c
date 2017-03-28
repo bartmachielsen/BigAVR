@@ -52,7 +52,7 @@ int main(void)
    board_init();
    DDRC  = 0xFF;
    PORTC = 0x00;
-
+   DDRF = 0x00;
 
    //Testweek1();
    //Testweek2();
@@ -70,7 +70,7 @@ int main(void)
    {
 		 Worldtick();
 		 SendtoMatrix();
-		 wait(500);
+		 wait(250);
    }
 
 
