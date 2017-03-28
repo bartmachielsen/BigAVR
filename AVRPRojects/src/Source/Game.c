@@ -9,30 +9,19 @@
  #include "Headers/Dotmatrix.h"
  #define HORIZONTAL_MATRIX_ROWS 8
  #define VERTICAL_MATRIX_ROWS 8
- #define MAX_GAME_OBJECTS 20
-
- int matrix[HORIZONTAL_MATRIX_ROWS][VERTICAL_MATRIX_ROWS];
- Object objects[MAX_GAME_OBJECTS];
  
+ int matrix[HORIZONTAL_MATRIX_ROWS,VERTICAL_MATRIX_ROWS];
+ Object moving_object;
 
  void InitGame(){
-   Object object;
-   object.block[0][0] = 1;
-   object.block[0][1] = 1;
-   object.block[1][0] = 1;
-   object.block[1][1] = 1;
-   object.x = 3;
-   object.y = -1;
-   object.stuck = 0;
+   moving_object.block[0][0] = 1;
+   moving_object.block[0][1] = 1;
+   moving_object.block[1][0] = 1;
+   moving_object.block[1][1] = 1;
+   moving_object.x = 3;
+   moving_object.y = -1;
+   moving_object.stuck = 0;
 
-   Object object2;
-   object2.block[0][0] = 1;
-   object2.block[0][1] = 1;
-   object2.block[1][0] = 1;
-   object2.block[1][1] = 1;
-   object2.x = 3;
-   object2.y = -1;
-   object2.stuck = 0;
  }
 
 
@@ -100,10 +89,20 @@ int collision(Object o1, Object o2){
 }
 
  void Worldtick(){
-   if(object.stuck == 0){
-     if(object.y+1 == 7) object.stuck = 1;
-     else object.y += 1;
-   } else {
+    int i;
+	Object object;
+	for(i = 0; i < added_objects; i++){
+		object = objects[i];
+		// checking if object is stuck on bottom
+		if(object.stuck == 0){
+			if(object.y+1 == VERTICAL_MATRIX_ROWS-1) object.stuck = 1;
+			else object.y += 1;
+		}
+		//	check collision
+	}
+
+
+   
      if(collision(object,object2) || object2.y+1 == 7) object2.stuck = 1;
      else object2.y += 1;
 
