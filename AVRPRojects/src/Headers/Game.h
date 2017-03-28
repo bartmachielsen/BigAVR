@@ -18,6 +18,7 @@ typedef struct {
 void Fillmatrix(int checker);
 void SendtoMatrix(void);
 void InitGame(void);
+void Showscore(void);
 void Worldtick(void);
 int collision(Object);
 

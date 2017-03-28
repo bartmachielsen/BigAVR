@@ -8,12 +8,19 @@
  #include "Headers/week1.h"
  #include "Headers/Game.h"
  #include "Headers/Dotmatrix.h"
+ #include "Headers/display.h"
  #include "Headers/Joystick.h"
+  #include <stdio.h>
+  #include <avr/io.h>
  #define HORIZONTAL_MATRIX_ROWS 8
  #define VERTICAL_MATRIX_ROWS 8
- 
+ #define ROW_SCORE 1
+
+
  int matrix[HORIZONTAL_MATRIX_ROWS][VERTICAL_MATRIX_ROWS];
  Object moving_object;
+ int score = 0;
+ int highscore = 0;
 
  void InitGame(){
    moving_object.block[0][0] = 1;
@@ -39,26 +46,48 @@
 	if(vertical_position != 1){
 		object->y += vertical_position;
 	}
-	if(collision(*object)){
+	if(collision(*object) || object->x < 0 || object->x >= HORIZONTAL_MATRIX_ROWS-1 || object->y < 0 || object->y >= VERTICAL_MATRIX_ROWS){
 		object->x -= horizontal_position;
-		if(vertical_position != 1){
-			object->y -= vertical_position;
-		}
+
+		
 	}
 
-	if(object->x > HORIZONTAL_MATRIX_ROWS-1){
-		object->x = HORIZONTAL_MATRIX_ROWS-1;
+ }
+
+ void MoveAll(int start){
+	for(int row = start-1; row >= 0; row--){
+		for(int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++){
+			matrix[x][row+1] = matrix[x][row];
+		}
 	}
-	if(object->x < 0){
-		object->x = 0;
+ }
+
+ void Showscore(){
+	char text[16];
+	char text2[16];
+	sprintf(text, "HIGHSCORE: %i      ", highscore);
+	sprintf(text2, "SCORE: %i         ", score);
+	lcd_writeLine1(text);
+	lcd_writeLine2(text2);
+ }
+
+ void CheckRowsFinished(){
+	for(int row = VERTICAL_MATRIX_ROWS-1; row >= 0; row--){
+		int complete = 1;
+		for(int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++){
+			if(matrix[x][row] == 0){
+				complete = -1;
+			}
+		}
+		
+		if(complete == 1){
+			MoveAll(row);
+			score += ROW_SCORE;
+			CheckRowsFinished();
+			break;
+		}
 	}
-	if(object->y > VERTICAL_MATRIX_ROWS-1){
-		object->y = VERTICAL_MATRIX_ROWS-1;
-	}
-	if(object->y < 0){
-		object->y = 0;
-	}
-	ShowOnDisplay(object->y,object->x);
+	
  }
 
  void Fillmatrix(int checker){
@@ -149,12 +178,19 @@ int collision(Object o1){
 		matrix[moving_object.x][moving_object.y+1] = moving_object.block[0][1];
 		matrix[moving_object.x+1][moving_object.y+1] = moving_object.block[1][1];
 
+		CheckRowsFinished();
+		if(score > highscore){
+			highscore = score;
+		}
 		InitGame();
 		
 		if (collision(moving_object)==1)
 		{
 			Fillmatrix(0);
+			score = 0;
 		}
+		Showscore();
 	}
+	
 
  }

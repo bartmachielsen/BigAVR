@@ -56,7 +56,7 @@ int main(void)
 
    //Testweek1();
    //Testweek2();
-   Testweek3();
+   //Testweek3();
    //Testweek4();
    InitDotmatrix();
    //clears display
@@ -65,6 +65,7 @@ int main(void)
       WriteRow(i, 0);
    }
 	 InitGame();
+	 Showscore();
    wait(500);
    while (1)
    {
