@@ -14,14 +14,15 @@ typedef struct {
   int x, y;
   int stuck;
 } Object;
-
+void MoveObject(Object* object);
+void MoveAll(int start);
 void Fillmatrix(int checker);
 void SendtoMatrix(void);
 void InitGame(void);
 void Showscore(void);
+void CheckRowsFinished();
 void Worldtick(void);
 int collision(Object);
-
 
 
 #endif /* INCFILE1_H_ */
