@@ -19,7 +19,6 @@
 
  int GetDirection(int);
  int GetPosition(int);
- void ShowOnDisplay(int positionx, int positiony);
  void TestJoyStick(void);
 
 
