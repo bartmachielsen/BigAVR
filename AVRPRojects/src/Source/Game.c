@@ -7,6 +7,7 @@
 
  #include "Headers/Game.h"
  #include "Headers/Dotmatrix.h"
+ #include "Headers/Joystick.h"
  #define HORIZONTAL_MATRIX_ROWS 8
  #define VERTICAL_MATRIX_ROWS 8
  
@@ -24,6 +25,9 @@
 
  }
 
+ void MoveObject(Object object){
+	GetPosition(VERTICAL);
+ }
 
  void Fillmatrix(int checker){
 	for (int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++)
