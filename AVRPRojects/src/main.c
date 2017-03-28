@@ -68,7 +68,6 @@ int main(void)
    wait(500);
    while (1)
    {
-		 Fillmatrix(0);
 		 Worldtick();
 		 SendtoMatrix();
 		 wait(500);

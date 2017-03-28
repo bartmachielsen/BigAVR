@@ -19,7 +19,7 @@
    moving_object.block[1][0] = 1;
    moving_object.block[1][1] = 1;
    moving_object.x = 3;
-   moving_object.y = -1;
+   moving_object.y = 0;
    moving_object.stuck = 0;
 
  }
@@ -38,12 +38,26 @@
 
 
  void SendtoMatrix(){
+
+	int tempmatrix[HORIZONTAL_MATRIX_ROWS][VERTICAL_MATRIX_ROWS];
+	for (int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++)
+	{
+		for (int y = 0; y < VERTICAL_MATRIX_ROWS; y++)
+		{
+			tempmatrix[x][y] = matrix[x][y];
+		}
+	}
+	tempmatrix[moving_object.x][moving_object.y] = moving_object.block[0][0];
+	tempmatrix[moving_object.x+1][moving_object.y] = moving_object.block[1][0];
+	tempmatrix[moving_object.x][moving_object.y+1] = moving_object.block[0][1];
+	tempmatrix[moving_object.x+1][moving_object.y+1] = moving_object.block[1][1];
+
    for (int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++)
  	{
     int rowvalue = 0;
     for (int y = 0; y < VERTICAL_MATRIX_ROWS; y++)
    	{
-      if(matrix[x][y] > 0){
+      if(tempmatrix[x][y] > 0){
         int temp = 0;
 
          switch (y) {
@@ -79,43 +93,26 @@
  	}
  }
 
-int collision(Object o1, Object o2){
-  if(o1.x == o2.x || o1.x+1 == o2.x || o1.x == o2.x+1){
-    if(o2.y+2 == o1.y){
-      return 1;
-    }
+int collision(Object o1){
+  if(matrix[o1.x][o1.y] || matrix[o1.x+1][o1.y] || matrix[o1.x][o1.y+2] || matrix[o1.x+1][o1.y+2] || o1.y+2 == VERTICAL_MATRIX_ROWS){
+	return 1;
   }
   return 0;
 }
 
  void Worldtick(){
-    int i;
-	Object object;
-	for(i = 0; i < added_objects; i++){
-		object = objects[i];
-		// checking if object is stuck on bottom
-		if(object.stuck == 0){
-			if(object.y+1 == VERTICAL_MATRIX_ROWS-1) object.stuck = 1;
-			else object.y += 1;
-		}
-		//	check collision
+	// checking if object is stuck
+	if(collision(moving_object)==0){
+		moving_object.y += 1;
+	}
+	else {
+		moving_object.stuck = 1;
+		matrix[moving_object.x][moving_object.y] = moving_object.block[0][0];
+		matrix[moving_object.x+1][moving_object.y] = moving_object.block[1][0];
+		matrix[moving_object.x][moving_object.y+1] = moving_object.block[0][1];
+		matrix[moving_object.x+1][moving_object.y+1] = moving_object.block[1][1];
+
+		InitGame();
 	}
 
-
-   
-     if(collision(object,object2) || object2.y+1 == 7) object2.stuck = 1;
-     else object2.y += 1;
-
-        matrix[object2.x][object2.y] = object2.block[0][0];
-        matrix[object2.x+1][object2.y] = object2.block[1][0];
-        matrix[object2.x][object2.y+1] = object2.block[0][1];
-        matrix[object2.x+1][object2.y+1] = object2.block[1][1];
-   }
-
-
-
-   matrix[object.x][object.y] = object.block[0][0];
-   matrix[object.x+1][object.y] = object.block[1][0];
-   matrix[object.x][object.y+1] = object.block[0][1];
-   matrix[object.x+1][object.y+1] = object.block[1][1];
  }
