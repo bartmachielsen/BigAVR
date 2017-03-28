@@ -203,6 +203,9 @@
     <Compile Include="src\Headers\Game.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\Headers\Joystick.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\Headers\week1.h">
       <SubType>compile</SubType>
     </Compile>
@@ -225,6 +228,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\Source\Game.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Source\Joystick.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\Source\week1.c">

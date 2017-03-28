@@ -7,16 +7,16 @@
 
  #include "Headers/Game.h"
  #include "Headers/Dotmatrix.h"
- #include <time.h>
- #include <stdlib.h>
+ #define HORIZONTAL_MATRIX_ROWS 8
+ #define VERTICAL_MATRIX_ROWS 8
+ #define MAX_GAME_OBJECTS 20
 
-
- int matrix[8][8];
- Object objects[20];
- Object object;
- Object object2;
+ int matrix[HORIZONTAL_MATRIX_ROWS][VERTICAL_MATRIX_ROWS];
+ Object objects[MAX_GAME_OBJECTS];
+ 
 
  void InitGame(){
+   Object object;
    object.block[0][0] = 1;
    object.block[0][1] = 1;
    object.block[1][0] = 1;
@@ -24,6 +24,8 @@
    object.x = 3;
    object.y = -1;
    object.stuck = 0;
+
+   Object object2;
    object2.block[0][0] = 1;
    object2.block[0][1] = 1;
    object2.block[1][0] = 1;
@@ -33,32 +35,29 @@
    object2.stuck = 0;
  }
 
- void RandomBlock(){
-	  srand(time(NULL));   // should only be called once
-	  int r = rand();
- }
 
  void Fillmatrix(int checker){
-	for (int i = 0; i < 8; i++)
+	for (int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++)
 	{
-    for (int i2 = 0; i2 < 8; i2++)
-  	{
-      matrix[i][i2] = checker;
-  	}
+		for (int y = 0; y < VERTICAL_MATRIX_ROWS; y++)
+		{
+			matrix[x][y] = checker;
+		}
 	}
  }
 
 
 
  void SendtoMatrix(){
-   for (int i = 0; i < 8; i++)
+   for (int x = 0; x < HORIZONTAL_MATRIX_ROWS; x++)
  	{
     int rowvalue = 0;
-    for (int i2 = 0; i2 < 8; i2++)
+    for (int y = 0; y < VERTICAL_MATRIX_ROWS; y++)
    	{
-      if(matrix[i][i2] > 0){
+      if(matrix[x][y] > 0){
         int temp = 0;
-         switch (i2) {
+
+         switch (y) {
            case 0:
            temp = 128;
            break;
@@ -87,7 +86,7 @@
         rowvalue = rowvalue + temp;
        }
    	}
-    WriteRow(i*2,rowvalue);
+    WriteRow(x*2,rowvalue);
  	}
  }
 
