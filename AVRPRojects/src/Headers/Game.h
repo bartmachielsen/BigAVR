@@ -19,6 +19,7 @@ void Fillmatrix(int checker);
 void SendtoMatrix(void);
 void InitGame(void);
 void Worldtick(void);
+int collision(Object);
 
 
 

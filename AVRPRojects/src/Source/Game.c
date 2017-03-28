@@ -39,6 +39,13 @@
 	if(vertical_position != 1){
 		object->y += vertical_position;
 	}
+	if(collision(*object)){
+		object->x -= horizontal_position;
+		if(vertical_position != 1){
+			object->y -= vertical_position;
+		}
+	}
+
 	if(object->x > HORIZONTAL_MATRIX_ROWS-1){
 		object->x = HORIZONTAL_MATRIX_ROWS-1;
 	}
